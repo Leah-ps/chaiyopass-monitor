@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-31T05:19:07.337115",
+  "timestamp": "2026-03-31T05:33:40.575490",
   "date": "2026-03-31",
   "keywords": [
     "Chai Yo Pass",
@@ -302,9 +302,9 @@
             "2026-03-28": 52,
             "2026-03-29": 44,
             "2026-03-30": 41,
-            "2026-03-31": 39
+            "2026-03-31": 38
           },
-          "current_score": 39,
+          "current_score": 38,
           "avg_score": 43.7,
           "max_score": 100,
           "trend_direction": "rising",
@@ -314,16 +314,16 @@
               "value": 3100
             },
             {
-              "query": "sat march",
-              "value": 500
-            },
-            {
               "query": "march sat 2026",
               "value": 500
             },
             {
               "query": "sat 2026",
               "value": 200
+            },
+            {
+              "query": "sat dates 2026",
+              "value": 120
             }
           ],
           "related_top": [
@@ -356,16 +356,16 @@
               "value": 34
             },
             {
-              "query": "sat march",
-              "value": 22
-            },
-            {
               "query": "sat practice test",
               "value": 20
             },
             {
               "query": "sat dates",
               "value": 19
+            },
+            {
+              "query": "my sat",
+              "value": 18
             }
           ]
         },
@@ -560,9 +560,9 @@
             "2026-03-28": 2,
             "2026-03-29": 2,
             "2026-03-30": 4,
-            "2026-03-31": 4
+            "2026-03-31": 5
           },
-          "current_score": 4,
+          "current_score": 5,
           "avg_score": 1.4,
           "max_score": 16,
           "trend_direction": "rising"
@@ -579,7 +579,8 @@
         },
         "ไชโยพาส": {
           "post_count": 0,
-          "error": "HTTPSConnectionPool(host='pantip.com', port=443): Read timed out. (read timeout=15)"
+          "posts": [],
+          "search_url": "https://pantip.com/search?q=ไชโยพาส"
         },
         "SAT": {
           "post_count": 0,
@@ -594,7 +595,7 @@
         "การกีฬาแห่งประเทศไทย": {
           "post_count": 0,
           "posts": [],
-          "note": "HTTP 429"
+          "search_url": "https://pantip.com/search?q=การกีฬาแห่งประเทศไทย"
         }
       }
     },
