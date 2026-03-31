@@ -16,7 +16,7 @@
     --accent-blue: #4a90d9;
     --accent-green: #2ecc71;
     --accent-orange: #f39c12;
-    --accent-red: #e74c3c;
+    --accent-red: #e74c3c;h
     --accent-purple: #9b59b6;
     --accent-teal: #1abc9c;
   }
@@ -761,6 +761,9 @@ function renderPostsTable(platforms, matchKw) {
   }
 
   if (allPosts.length === 0) return;
+
+  // 按互動量排序（高 → 低）
+  allPosts.sort((a, b) => ((b.likes || 0) + (b.comments || 0)) - ((a.likes || 0) + (a.comments || 0)));
 
   tbody.innerHTML = allPosts.slice(0, 20).map(p => {
     const content = (p.text || p.title || '').substring(0, 60) + ((p.text || p.title || '').length > 60 ? '...' : '');
