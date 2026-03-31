@@ -320,12 +320,12 @@
 <div class="header">
   <h1><span class="logo">📡</span> Chai Yo Pass 社群監控儀表板</h1>
   <div style="display:flex;align-items:center;gap:16px;">
-    <button class="collect-btn" id="collectBtn" onclick="triggerCollect()">
+    <button class="collect-btn" id="collectBtn" style="display:none" onclick="triggerCollect()">
       <span class="btn-icon">🔄</span>
       <span class="spinner"></span>
       立即收集數據
     </button>
-    <button onclick="setupToken()" title="設定 GitHub Token（一鍵觸發）" style="background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-secondary);cursor:pointer;padding:6px 10px;font-size:16px;" id="settingsBtn">⚙️</button>
+    <button onclick="setupToken()" title="設定 GitHub Token（一鍵觸發）" style="display:none;background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-secondary);cursor:pointer;padding:6px 10px;font-size:16px;" id="settingsBtn">⚙️</button>
     <div class="header-meta">
       <div id="lastUpdated">載入中...</div>
       <div class="status"><span class="dot"></span> 自動監控中</div>
@@ -863,9 +863,18 @@ function setupToken() {
   }
 }
 
-if (localStorage.getItem('gh_pat')) {
-  document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
-}
+(function(){
+      var hasToken = localStorage.getItem('gh_pat');
+      var isAdmin = window.location.search.indexOf('admin') !== -1;
+      if (hasToken) {
+        document.getElementById('collectBtn').style.display = '';
+        document.getElementById('settingsBtn').style.display = '';
+        document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+      } else if (isAdmin) {
+        document.getElementById('collectBtn').style.display = '';
+        document.getElementById('settingsBtn').style.display = '';
+      }
+    })()
 
 async function triggerCollect() {
   const btn = document.getElementById('collectBtn');
