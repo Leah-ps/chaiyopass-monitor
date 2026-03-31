@@ -3323,10 +3323,1630 @@
         }
       },
       "kol_summary": []
+    },
+    {
+      "timestamp": "2026-03-31T06:08:01.932968",
+      "date": "2026-03-31",
+      "keywords": [
+        "Chai Yo Pass",
+        "ไชโยพาส",
+        "SAT",
+        "Sports Authority of Thailand",
+        "การกีฬาแห่งประเทศไทย"
+      ],
+      "platforms": {
+        "google_trends": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "trend_data": {
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 0,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 0,
+                "2026-03-20": 0,
+                "2026-03-21": 0,
+                "2026-03-22": 0,
+                "2026-03-23": 0,
+                "2026-03-24": 0,
+                "2026-03-25": 0,
+                "2026-03-26": 0,
+                "2026-03-27": 0,
+                "2026-03-28": 0,
+                "2026-03-29": 0,
+                "2026-03-30": 0,
+                "2026-03-31": 0
+              },
+              "current_score": 0,
+              "avg_score": 0,
+              "max_score": 0,
+              "trend_direction": "stable",
+              "note": "Google Trends 連線失敗，數據待更新"
+            },
+            "ไชโยพาส": {
+              "trend_data": {
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 0,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 0,
+                "2026-03-20": 0,
+                "2026-03-21": 0,
+                "2026-03-22": 0,
+                "2026-03-23": 0,
+                "2026-03-24": 0,
+                "2026-03-25": 0,
+                "2026-03-26": 0,
+                "2026-03-27": 0,
+                "2026-03-28": 0,
+                "2026-03-29": 0,
+                "2026-03-30": 0,
+                "2026-03-31": 0
+              },
+              "current_score": 0,
+              "avg_score": 0,
+              "max_score": 0,
+              "trend_direction": "stable",
+              "note": "Google Trends 連線失敗，數據待更新"
+            },
+            "SAT": {
+              "trend_data": {
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 0,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 0,
+                "2026-03-20": 0,
+                "2026-03-21": 0,
+                "2026-03-22": 0,
+                "2026-03-23": 0,
+                "2026-03-24": 0,
+                "2026-03-25": 0,
+                "2026-03-26": 0,
+                "2026-03-27": 0,
+                "2026-03-28": 0,
+                "2026-03-29": 0,
+                "2026-03-30": 0,
+                "2026-03-31": 0
+              },
+              "current_score": 0,
+              "avg_score": 0,
+              "max_score": 0,
+              "trend_direction": "stable",
+              "note": "Google Trends 連線失敗，數據待更新"
+            },
+            "Sports Authority of Thailand": {
+              "trend_data": {
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 0,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 0,
+                "2026-03-20": 0,
+                "2026-03-21": 0,
+                "2026-03-22": 0,
+                "2026-03-23": 0,
+                "2026-03-24": 0,
+                "2026-03-25": 0,
+                "2026-03-26": 0,
+                "2026-03-27": 0,
+                "2026-03-28": 0,
+                "2026-03-29": 0,
+                "2026-03-30": 0,
+                "2026-03-31": 0
+              },
+              "current_score": 0,
+              "avg_score": 0,
+              "max_score": 0,
+              "trend_direction": "stable",
+              "note": "Google Trends 連線失敗，數據待更新"
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "trend_data": {
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 0,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 0,
+                "2026-03-20": 0,
+                "2026-03-21": 0,
+                "2026-03-22": 0,
+                "2026-03-23": 0,
+                "2026-03-24": 0,
+                "2026-03-25": 0,
+                "2026-03-26": 0,
+                "2026-03-27": 0,
+                "2026-03-28": 0,
+                "2026-03-29": 0,
+                "2026-03-30": 0,
+                "2026-03-31": 0
+              },
+              "current_score": 0,
+              "avg_score": 0,
+              "max_score": 0,
+              "trend_direction": "stable",
+              "note": "Google Trends 連線失敗，數據待更新"
+            }
+          },
+          "note": "fallback data - Google blocked"
+        },
+        "pantip": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "post_count": 0,
+              "posts": [],
+              "search_url": "https://pantip.com/search?q=Chai Yo Pass",
+              "items": {
+                "stats": {
+                  "total_posts": 0,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": []
+              }
+            },
+            "ไชโยพาส": {
+              "post_count": 5,
+              "posts": [
+                {
+                  "title": "💫🕛💫🚀 แดนศิวิไลซ์ ( หลงกาล ภาค 2 ) ตอนที่ 61 🚀💫🕛💫",
+                  "url": "https://pantip.com/topic/40724860",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "สงสัยเรื่องสะสมไมล์ของ SkyTeam",
+                  "url": "https://pantip.com/topic/36394502",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "คห.3-4",
+                  "url": "https://pantip.com/topic/36394502/comment3-4",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "[สัพเพเหระ]..กระทู้คุยเพลินๆ ยามว่างจากการงาน..กับฮั่น",
+                  "url": "https://pantip.com/topic/34641555",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "คห.130-1",
+                  "url": "https://pantip.com/topic/34641555/comment130-1",
+                  "comments": 0,
+                  "views": 0
+                }
+              ],
+              "search_url": "https://pantip.com/search?q=ไชโยพาส",
+              "items": {
+                "stats": {
+                  "total_posts": 5,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": [
+                  {
+                    "title": "💫🕛💫🚀 แดนศิวิไลซ์ ( หลงกาล ภาค 2 ) ตอนที่ 61 🚀💫🕛💫",
+                    "url": "https://pantip.com/topic/40724860",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "สงสัยเรื่องสะสมไมล์ของ SkyTeam",
+                    "url": "https://pantip.com/topic/36394502",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "คห.3-4",
+                    "url": "https://pantip.com/topic/36394502/comment3-4",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "[สัพเพเหระ]..กระทู้คุยเพลินๆ ยามว่างจากการงาน..กับฮั่น",
+                    "url": "https://pantip.com/topic/34641555",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "คห.130-1",
+                    "url": "https://pantip.com/topic/34641555/comment130-1",
+                    "comments": 0,
+                    "views": 0
+                  }
+                ]
+              }
+            },
+            "SAT": {
+              "post_count": 9,
+              "posts": [
+                {
+                  "title": "สนามสอบsat",
+                  "url": "https://pantip.com/topic/43956676",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                  "url": "https://pantip.com/topic/43879422",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "ที่เรียนพิเศษSAT(math , verbal) , IELTS , ACT",
+                  "url": "https://pantip.com/topic/43792718",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44032127",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44023269",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat14 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44014837",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/43989455",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44006545",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/43997834",
+                  "comments": 0,
+                  "views": 0
+                }
+              ],
+              "search_url": "https://pantip.com/search?q=SAT",
+              "items": {
+                "stats": {
+                  "total_posts": 9,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": [
+                  {
+                    "title": "สนามสอบsat",
+                    "url": "https://pantip.com/topic/43956676",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                    "url": "https://pantip.com/topic/43879422",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "ที่เรียนพิเศษSAT(math , verbal) , IELTS , ACT",
+                    "url": "https://pantip.com/topic/43792718",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44032127",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44023269",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat14 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44014837",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/43989455",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44006545",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/43997834",
+                    "comments": 0,
+                    "views": 0
+                  }
+                ]
+              }
+            },
+            "Sports Authority of Thailand": {
+              "post_count": 7,
+              "posts": [
+                {
+                  "title": "กระหึ่มโลกMotogpThaiGPที่สนามช้างบุรีรัมย์ถูกวางให้เป็นสนามเปิดฤดูกาล2025และ2026",
+                  "url": "https://pantip.com/topic/42920736",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "JJNY:อ.รัฐศาสตร์สำรวจเผยน.ศ.เห็นด้วย|ลางร้าย!แขนขาดข้างหนึ่งแล้ว|พิธาลั่นก้าวไกลได้ตั้งรบ.|รศ.ดร.สิริพรรณจี้\"กกท.\"",
+                  "url": "https://pantip.com/topic/41751712",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "(MV)TogetherAbsolutelyคั่นกู2022ค่ะตัวเต็มมาละค่ะ(มีน้องไบร์ทนิดหน่อยเองนะคะมาแบบquoteๆ)เชิญร่วมบริจาคได้นะคะ",
+                  "url": "https://pantip.com/topic/41266123",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "วอลเลย์บอลหญิงอาเซียนกรังด์ปรีซ์2019",
+                  "url": "https://pantip.com/topic/39222638",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "SummitDiary",
+                  "url": "https://pantip.com/topic/38231482",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "เซ็นสัญญาThailandGPเป็นที่เรียบรอย3ปี2018-2020",
+                  "url": "https://pantip.com/topic/36827412",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "บิ๊กเสือกร้าวต้องไม่มีMMAบนผืนแผ่นดินแห่งต้นกำเนิดมวยไทย",
+                  "url": "https://pantip.com/topic/34874598",
+                  "comments": 0,
+                  "views": 0
+                }
+              ],
+              "search_url": "https://pantip.com/search?q=Sports Authority of Thailand",
+              "items": {
+                "stats": {
+                  "total_posts": 7,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": [
+                  {
+                    "title": "กระหึ่มโลกMotogpThaiGPที่สนามช้างบุรีรัมย์ถูกวางให้เป็นสนามเปิดฤดูกาล2025และ2026",
+                    "url": "https://pantip.com/topic/42920736",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "JJNY:อ.รัฐศาสตร์สำรวจเผยน.ศ.เห็นด้วย|ลางร้าย!แขนขาดข้างหนึ่งแล้ว|พิธาลั่นก้าวไกลได้ตั้งรบ.|รศ.ดร.สิริพรรณจี้\"กกท.\"",
+                    "url": "https://pantip.com/topic/41751712",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "(MV)TogetherAbsolutelyคั่นกู2022ค่ะตัวเต็มมาละค่ะ(มีน้องไบร์ทนิดหน่อยเองนะคะมาแบบquoteๆ)เชิญร่วมบริจาคได้นะคะ",
+                    "url": "https://pantip.com/topic/41266123",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "วอลเลย์บอลหญิงอาเซียนกรังด์ปรีซ์2019",
+                    "url": "https://pantip.com/topic/39222638",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "SummitDiary",
+                    "url": "https://pantip.com/topic/38231482",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "เซ็นสัญญาThailandGPเป็นที่เรียบรอย3ปี2018-2020",
+                    "url": "https://pantip.com/topic/36827412",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "บิ๊กเสือกร้าวต้องไม่มีMMAบนผืนแผ่นดินแห่งต้นกำเนิดมวยไทย",
+                    "url": "https://pantip.com/topic/34874598",
+                    "comments": 0,
+                    "views": 0
+                  }
+                ]
+              }
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "post_count": 0,
+              "posts": [],
+              "search_url": "https://pantip.com/search?q=การกีฬาแห่งประเทศไทย",
+              "items": {
+                "stats": {
+                  "total_posts": 0,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": []
+              }
+            }
+          }
+        },
+        "tiktok": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "total_results": 30,
+              "items": {
+                "posts": [
+                  {
+                    "author": "allaymizu",
+                    "text": "#CapCut #fyp Tutorial how to make chai work again, fixed region blocked and limited usage #chai #xybca ",
+                    "likes": 1244,
+                    "comments": 73,
+                    "url": "https://www.tiktok.com/@allaymizu/video/7618959777896336660",
+                    "date": 1773927314
+                  },
+                  {
+                    "author": "redsusvn",
+                    "text": "How to bypass c.ai age verify and unlock edit button\nthis tutorial can show you how you can unlock the full feature on c.ai and get the edit button back.\nThis tutorial also help you to bypass time lim",
+                    "likes": 1224,
+                    "comments": 206,
+                    "url": "https://www.tiktok.com/@redsusvn/video/7620398090276621588",
+                    "date": 1774262202
+                  },
+                  {
+                    "author": "satikchya4",
+                    "text": "Time pass#funwithfriends #love @Chaudhari Ranju ",
+                    "likes": 13,
+                    "comments": 2,
+                    "url": "https://www.tiktok.com/@satikchya4/video/7589444407431040263",
+                    "date": 1767055239
+                  },
+                  {
+                    "author": "chai27992",
+                    "text": "please if this doesn't work for you don't get mad at me.#chai #fyppppppppppppppppppppppp #help #thankmelater #ilovemyindia ",
+                    "likes": 530,
+                    "comments": 31,
+                    "url": "https://www.tiktok.com/@chai27992/video/7621230245466754324",
+                    "date": 1774455955
+                  },
+                  {
+                    "author": "monherwek",
+                    "text": "Chiapass",
+                    "likes": 13,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@monherwek/video/7386860427893886214",
+                    "date": 1719887472
+                  },
+                  {
+                    "author": "user4843804295022",
+                    "text": "#chai #bot #fyppppppppppppppppppppppp #врекомендации #врек ",
+                    "likes": 260,
+                    "comments": 214,
+                    "url": "https://www.tiktok.com/@user4843804295022/video/7620047984570535185",
+                    "date": 1774180717
+                  },
+                  {
+                    "author": "rlea81",
+                    "text": "ANNOUNCEMENT EVERYONE MY LOVIES!\n\nchai ai it's already blocked on my country \"Philippines\" i need to buy chai premium to use this again but don't have money 🥹but don't worry guys I won't stop uploadin",
+                    "likes": 159,
+                    "comments": 40,
+                    "url": "https://www.tiktok.com/@rlea81/video/7605082658921598216",
+                    "date": 1770696298
+                  },
+                  {
+                    "author": "virtualanimefusio",
+                    "text": "Welche Combo ist dein Fave… und warum natürlich Saylo AI?❤️‍🔥❤️‍🔥\n#aichat #saylo #cai #chai ",
+                    "likes": 462,
+                    "comments": 28,
+                    "url": "https://www.tiktok.com/@virtualanimefusio/video/7578979691206380807",
+                    "date": 1764618727
+                  },
+                  {
+                    "author": "shads_bianca0",
+                    "text": "Genuinely WTH IS HAPPENING..#Chai #fyppppppppppppppppppppppp ",
+                    "likes": 469,
+                    "comments": 90,
+                    "url": "https://www.tiktok.com/@shads_bianca0/video/7622672171063823637",
+                    "date": 1774791676
+                  },
+                  {
+                    "author": "jenyaraaw_",
+                    "text": "I don't use VPN when opening chai\n\n#Chai\n#regionblocked\n#chai\n#ai\n#xyzbcafypシ ",
+                    "likes": 57800,
+                    "comments": 2589,
+                    "url": "https://www.tiktok.com/@jenyaraaw_/video/7607005232706506004",
+                    "date": 1771143933
+                  }
+                ],
+                "stats": {
+                  "total_posts": 30,
+                  "total_likes": 515309,
+                  "total_comments": 9444,
+                  "total_shares": 80545,
+                  "avg_engagement": 20176.6
+                },
+                "kol_mentions": [
+                  {
+                    "username": "maheen.mughal30",
+                    "followers": 518300,
+                    "platform": "TikTok",
+                    "likes": 352200
+                  },
+                  {
+                    "username": "almaplayss2.0",
+                    "followers": 238200,
+                    "platform": "TikTok",
+                    "likes": 5291
+                  },
+                  {
+                    "username": "realruchi86",
+                    "followers": 50900,
+                    "platform": "TikTok",
+                    "likes": 133
+                  },
+                  {
+                    "username": "realruchi86",
+                    "followers": 50900,
+                    "platform": "TikTok",
+                    "likes": 132
+                  },
+                  {
+                    "username": ".crazygirl032",
+                    "followers": 26900,
+                    "platform": "TikTok",
+                    "likes": 300
+                  },
+                  {
+                    "username": "lanadelreysisblade",
+                    "followers": 12500,
+                    "platform": "TikTok",
+                    "likes": 22300
+                  }
+                ]
+              }
+            },
+            "ไชโยพาส": {
+              "total_results": 30,
+              "items": {
+                "posts": [
+                  {
+                    "author": "nongkeawsawang",
+                    "text": "งานช่อง8 พลาซ่าส์ ตลาดไชโยโชว์ใหญ่ ครั้งที่1 ซาวด์เช็คกับเซอร์ไพรส์เล็กๆ ก่อนขึ้นเพลงสแตนบายหล่อ😉#newcountry #mbow_newcountry #สแตนบายหล่อ #ช่อง8พลาซ่าส์ #เมื่อหม่ามี้หัดเป็นติ่ง ",
+                    "likes": 124,
+                    "comments": 2,
+                    "url": "https://www.tiktok.com/@nongkeawsawang/video/7623071816008895751",
+                    "date": 1774884723
+                  },
+                  {
+                    "author": "nongkeawsawang",
+                    "text": "งานช่อง 8 พลาซ่าส์ ตลาดไชโยโชว์ใหญ่ ครั้งที่1#รักคุณยิ่งกว่าใคร #newcountry #mbow_newcountry #เมื่อหม่ามี้หัดเป็นติ่ง #ช่อง8พลาซ่าส์ ",
+                    "likes": 252,
+                    "comments": 8,
+                    "url": "https://www.tiktok.com/@nongkeawsawang/video/7622692194595458312",
+                    "date": 1774796335
+                  },
+                  {
+                    "author": "nongkeawsawang",
+                    "text": "งานช่อง 8 พลาซ่าส์ ตลาดไชโยโชว์ใหญ่ ครั้งที่1 #mbow_newcountry #newcountry #รักคุณยิ่งกว่าใคร #ลูกชายคนโปรด#เมื่อหม่ามี้หัดเป็นติ่ง ",
+                    "likes": 24,
+                    "comments": 7,
+                    "url": "https://www.tiktok.com/@nongkeawsawang/video/7622711061354941704",
+                    "date": 1774800727
+                  },
+                  {
+                    "author": "atom.miz",
+                    "text": "ปิดงานเดือนมีนา\n8พลาซ่า ตลาดไชโยโชว์ใหญ่\n#ต้นข้าวอาร์สยาม \n#กานต์ทศน \n#นิวคันทรี่ ",
+                    "likes": 17,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@atom.miz/video/7622706962228055304",
+                    "date": 1774799776
+                  },
+                  {
+                    "author": "nongkeawsawang",
+                    "text": "งานช่อง 8 พลาซ่าส์ ตลาดไชโยโชว์ใหญ่ ครั้งที่1 #ซุปเปอร์สตาร์ #newcountry #mbow_newcountry #ช่อง8พลาซ่าส์#เมื่อหม่ามี้หัดเป็นติ่ง ",
+                    "likes": 307,
+                    "comments": 8,
+                    "url": "https://www.tiktok.com/@nongkeawsawang/video/7622671257103879432",
+                    "date": 1774791459
+                  },
+                  {
+                    "author": "teammbow",
+                    "text": "2026.03.29 - Superstar [MBOW focused]\nช่อง 8 พลาซ่าส์ ตลาดไชโย โชว์ใหญ่ #mbow_newcountry #เอ็มโบนิวคันทรี่ #teammbow @mbow_newcountry ",
+                    "likes": 62,
+                    "comments": 8,
+                    "url": "https://www.tiktok.com/@teammbow/video/7622645915278626068",
+                    "date": 1774785566
+                  },
+                  {
+                    "author": "lulu_duangrudee",
+                    "text": "#นี่แหละ #ช่อง8พลาซ่าตลาดไชโยโชว์ใหญ่  #ลูลู่  #ลูลู่โปงลางสะออน #น้ําปลาร้าลูลู่ ",
+                    "likes": 102,
+                    "comments": 2,
+                    "url": "https://www.tiktok.com/@lulu_duangrudee/video/7623285884456127752",
+                    "date": 1774934566
+                  },
+                  {
+                    "author": "ducky.jesse",
+                    "text": "รวมความอร่อยในงาน ช่อง8พลาซ่าส์ ตลาดไชโย โชว์ใหญ่ ที่ตลาดเทิดไท ลาดกระบัง กรุงเทพฯ #ch8 #ช่อง8พลาซ่า #เงินไชโย #ตลาดไชโยโชว์ใหญ่",
+                    "likes": 779,
+                    "comments": 7,
+                    "url": "https://www.tiktok.com/@ducky.jesse/video/7622693861931945237",
+                    "date": 1774796728
+                  },
+                  {
+                    "author": "nikitaaa_sysy",
+                    "text": "ไชโย🍻\n\n#BoatOat #BoatYongyut #OatPasakorn ",
+                    "likes": 224,
+                    "comments": 3,
+                    "url": "https://www.tiktok.com/@nikitaaa_sysy/video/7622459795181669663",
+                    "date": 1774742234
+                  },
+                  {
+                    "author": "jaejaaaaaa",
+                    "text": "ช่อง 8 พลาซ่าส์ ตลาดไชโยโชว์ใหญ่ที่ตลาดเทิดไท ลาดกระบัง งานสนุกมากกก😍 \n#ch8 #ช่อง8พลาซ่า #เงินไชโย #ตลาดไชโยโชว์ใหญ่ ",
+                    "likes": 37,
+                    "comments": 4,
+                    "url": "https://www.tiktok.com/@jaejaaaaaa/video/7622648841694645525",
+                    "date": 1774786247
+                  }
+                ],
+                "stats": {
+                  "total_posts": 30,
+                  "total_likes": 66730,
+                  "total_comments": 692,
+                  "total_shares": 7776,
+                  "avg_engagement": 2506.6
+                },
+                "kol_mentions": [
+                  {
+                    "username": "lulu_duangrudee",
+                    "followers": 588200,
+                    "platform": "TikTok",
+                    "likes": 102
+                  },
+                  {
+                    "username": "jaejaaaaaa",
+                    "followers": 391000,
+                    "platform": "TikTok",
+                    "likes": 37
+                  },
+                  {
+                    "username": "long_gong888",
+                    "followers": 268300,
+                    "platform": "TikTok",
+                    "likes": 5170
+                  },
+                  {
+                    "username": "sakonrtv",
+                    "followers": 198300,
+                    "platform": "TikTok",
+                    "likes": 90
+                  },
+                  {
+                    "username": "kunanyalawyer",
+                    "followers": 186700,
+                    "platform": "TikTok",
+                    "likes": 4184
+                  },
+                  {
+                    "username": "ayutthaya_station",
+                    "followers": 177000,
+                    "platform": "TikTok",
+                    "likes": 4498
+                  },
+                  {
+                    "username": "ayutthaya.life",
+                    "followers": 162000,
+                    "platform": "TikTok",
+                    "likes": 2785
+                  },
+                  {
+                    "username": "aing_14",
+                    "followers": 97300,
+                    "platform": "TikTok",
+                    "likes": 14
+                  },
+                  {
+                    "username": "jannijie",
+                    "followers": 64800,
+                    "platform": "TikTok",
+                    "likes": 146
+                  },
+                  {
+                    "username": "samyodmotor89",
+                    "followers": 62800,
+                    "platform": "TikTok",
+                    "likes": 865
+                  },
+                  {
+                    "username": "science5666",
+                    "followers": 49600,
+                    "platform": "TikTok",
+                    "likes": 4674
+                  },
+                  {
+                    "username": "ducky.jesse",
+                    "followers": 37300,
+                    "platform": "TikTok",
+                    "likes": 779
+                  },
+                  {
+                    "username": "mickeymew_mm22",
+                    "followers": 10500,
+                    "platform": "TikTok",
+                    "likes": 6
+                  }
+                ]
+              }
+            },
+            "SAT": {
+              "total_results": 30,
+              "items": {
+                "posts": [
+                  {
+                    "author": "elisempham",
+                    "text": "Jumping from a 1270 to a 1580 on the SAT in just one month sounds impossible, right?\n\nWhen I first took the SAT, the Reading section felt impossible. \n\nI was stuck, frustrated, and convinced I’d never",
+                    "likes": 44800,
+                    "comments": 148,
+                    "url": "https://www.tiktok.com/@elisempham/video/7467927566008012075",
+                    "date": 1738762397
+                  },
+                  {
+                    "author": "elisempham",
+                    "text": "We’re entering peak SAT season — make sure you’re studying correctly! ✅\n\n#ultimateivyleagueguide #uilg #ultimatementor ",
+                    "likes": 9161,
+                    "comments": 15,
+                    "url": "https://www.tiktok.com/@elisempham/video/7599089945420025118",
+                    "date": 1769907540
+                  },
+                  {
+                    "author": "crackdmath",
+                    "text": "6 weeks! #sat #study #highschool #1600 #may ",
+                    "likes": 126,
+                    "comments": 2,
+                    "url": "https://www.tiktok.com/@crackdmath/video/7622833277849619726",
+                    "date": 1774829201
+                  },
+                  {
+                    "author": "satpreptutor",
+                    "text": "SAT grammar questions LOVE to talk about the words however, though, and rather! Do you know the grammar rules? #sat #satprep #sattutor #digitalsat #marchsat ",
+                    "likes": 55,
+                    "comments": 3,
+                    "url": "https://www.tiktok.com/@satpreptutor/video/7623271440695020814",
+                    "date": 1774931235
+                  },
+                  {
+                    "author": "elisempham",
+                    "text": "It’s actually REALLY easy to improve your SAT score if you and your friends know the right strategies. \n\nHere are my Top 5:\n\n1. Craft Your Own Precise Answer (COPA) – Reading:\nInstead of jumping strai",
+                    "likes": 1677,
+                    "comments": 6,
+                    "url": "https://www.tiktok.com/@elisempham/video/7607577610570190110",
+                    "date": 1771277211
+                  },
+                  {
+                    "author": "jordannascollegeapps",
+                    "text": "SAT Tips !! #harvard #collegeapps #commonapp #collegeessay #fyp #sat #studytips ",
+                    "likes": 79400,
+                    "comments": 324,
+                    "url": "https://www.tiktok.com/@jordannascollegeapps/video/7534023174061559070",
+                    "date": 1754151488
+                  },
+                  {
+                    "author": "claydotyur",
+                    "text": "manifesting a 1300 #sat #fyp ",
+                    "likes": 25700,
+                    "comments": 226,
+                    "url": "https://www.tiktok.com/@claydotyur/video/7616829866003991839",
+                    "date": 1773431421
+                  },
+                  {
+                    "author": "chudmaster024",
+                    "text": "i did it. 🥹🥹🥹🥹🥹 #sat #collegeboard #sattest #viraltiktok #fypシ ",
+                    "likes": 30800,
+                    "comments": 171,
+                    "url": "https://www.tiktok.com/@chudmaster024/video/7622318768596798750",
+                    "date": 1774709408
+                  },
+                  {
+                    "author": "matchalicker7",
+                    "text": "thank you khan academy and dolphin SAT #sat #psat #college #study #highschool ",
+                    "likes": 126800,
+                    "comments": 356,
+                    "url": "https://www.tiktok.com/@matchalicker7/video/7621250142145875214",
+                    "date": 1774460633
+                  },
+                  {
+                    "author": "yoursatcoach",
+                    "text": "This SAT question is easy BUT everyone gets it wrong\n\n#satprep #digitalsat #digitalsathacks#satmath #satreading #sattestprep #highschoolparents #psatprep #psat #collegeadmissions ",
+                    "likes": 780600,
+                    "comments": 3315,
+                    "url": "https://www.tiktok.com/@yoursatcoach/video/7473543099902496046",
+                    "date": 1740069900
+                  }
+                ],
+                "stats": {
+                  "total_posts": 30,
+                  "total_likes": 1774439,
+                  "total_comments": 8576,
+                  "total_shares": 74304,
+                  "avg_engagement": 61910.6
+                },
+                "kol_mentions": [
+                  {
+                    "username": "sloanealex_",
+                    "followers": 2300000,
+                    "platform": "TikTok",
+                    "likes": 141100
+                  },
+                  {
+                    "username": "yoursatcoach",
+                    "followers": 479700,
+                    "platform": "TikTok",
+                    "likes": 780600
+                  },
+                  {
+                    "username": "yoursatcoach",
+                    "followers": 479700,
+                    "platform": "TikTok",
+                    "likes": 145500
+                  },
+                  {
+                    "username": "ryan.choice",
+                    "followers": 361200,
+                    "platform": "TikTok",
+                    "likes": 129200
+                  },
+                  {
+                    "username": "elisempham",
+                    "followers": 282100,
+                    "platform": "TikTok",
+                    "likes": 44800
+                  },
+                  {
+                    "username": "elisempham",
+                    "followers": 282100,
+                    "platform": "TikTok",
+                    "likes": 9161
+                  },
+                  {
+                    "username": "elisempham",
+                    "followers": 282100,
+                    "platform": "TikTok",
+                    "likes": 1677
+                  },
+                  {
+                    "username": "satpreptutor",
+                    "followers": 248200,
+                    "platform": "TikTok",
+                    "likes": 55
+                  },
+                  {
+                    "username": "satpreptutor",
+                    "followers": 248200,
+                    "platform": "TikTok",
+                    "likes": 1062
+                  },
+                  {
+                    "username": "satpreptutor",
+                    "followers": 248200,
+                    "platform": "TikTok",
+                    "likes": 1533
+                  },
+                  {
+                    "username": "satpreptutor",
+                    "followers": 248200,
+                    "platform": "TikTok",
+                    "likes": 892
+                  },
+                  {
+                    "username": "jordannascollegeapps",
+                    "followers": 40900,
+                    "platform": "TikTok",
+                    "likes": 79400
+                  },
+                  {
+                    "username": "strategictestprep",
+                    "followers": 24500,
+                    "platform": "TikTok",
+                    "likes": 282
+                  },
+                  {
+                    "username": "satprepai",
+                    "followers": 11200,
+                    "platform": "TikTok",
+                    "likes": 114
+                  },
+                  {
+                    "username": "us.citizen609",
+                    "followers": 10900,
+                    "platform": "TikTok",
+                    "likes": 11700
+                  },
+                  {
+                    "username": "ryanssatprep",
+                    "followers": 10700,
+                    "platform": "TikTok",
+                    "likes": 2109
+                  }
+                ]
+              }
+            },
+            "Sports Authority of Thailand": {
+              "total_results": 30,
+              "items": {
+                "posts": [
+                  {
+                    "author": "buildingsplan.sat",
+                    "text": "สำหรับเพื่อนๆที่ชอบออกกำลังกายหรือรักกีฬาแบดมินตันเป็นพิเศษ พวกเราขอเชิญชวนเพื่อนๆ มาลองตีที่สนามแบดมินตัน ณ ศูนย์ฝึกกีฬาในร่ม กกท. ของเรา🏸🥰\nปล.หากท่านใดสนใจสามารถติดต่อสอบถามรายละเอียดได้ที่ โทร 097 ",
+                    "likes": 57,
+                    "comments": 8,
+                    "url": "https://www.tiktok.com/@buildingsplan.sat/video/7437058467006778631",
+                    "date": 1731575113
+                  },
+                  {
+                    "author": "jakrach2516",
+                    "text": "ตื่นเต้น และเป็นประสบการณ์ที่ดี......\"น้องมาร์คเกอร์\" อิทธิ์ชพัฒน์ บัณฑิตมหากุล นักกอล์ฟไทยวัย 15 ปี เปิดใจหลังจบการแข่งขันด้วยการคว้าอันดับ 2 จากสกอร์รวม 5 อันเดอร์พาร์ 211 จากการแข่งขันกอล์ฟ ไทยแลนด",
+                    "likes": 4,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@jakrach2516/video/7547284305886661889",
+                    "date": 1757239087
+                  },
+                  {
+                    "author": "fightclubmuaythai",
+                    "text": "Wai Kru Muaythai (Sports Authority of Thailand License Version) (Sit Position)\n\nThe Wai Kru Muay Thai Ceremony is a cultural ritual performed to show respect to one’s teacher, lineage and the art of M",
+                    "likes": 20600,
+                    "comments": 52,
+                    "url": "https://www.tiktok.com/@fightclubmuaythai/video/7596005197634227463",
+                    "date": 1768582784
+                  },
+                  {
+                    "author": "cnbol.nr2",
+                    "text": "Sports Authority of Thailand 🇹🇭 \nการกีฬาแห่งประเทศไทย 🇹🇭\n\n#กกท #thailand #lovethailand\n#เรียนภาษาไทย #bangkok ",
+                    "likes": 196,
+                    "comments": 24,
+                    "url": "https://www.tiktok.com/@cnbol.nr2/video/7460880395702258966",
+                    "date": 1737121592
+                  },
+                  {
+                    "author": "kruwut.sangmorakot",
+                    "text": ":Advanced professional Muay Thai instructor certified by the Sports Authority of Thailand.\n#ครูมวยไทยอาชีพขั้นสูงรุ่น3 จากการกีฬาแห่งประเทศไทยรับรอง\n #Coach ทีมมวยไทยสมัครเล่นทีมชาติซาอุฯ\n#ครูมวยไทยโบ",
+                    "likes": 21,
+                    "comments": 1,
+                    "url": "https://www.tiktok.com/@kruwut.sangmorakot/video/7622685567439899925",
+                    "date": 1774794795
+                  },
+                  {
+                    "author": "vlogmotomoment",
+                    "text": "The Winner of First Tuk Tuk  Race in The World at ThaiGP 2026 is ....... Prima Pramac Yamaha MotoGP 🔥🔥🔥🏆 พี่แจ๊ค, พี่โทปรัค ทำถึง , ThaiGP ทำถึง!!!! \n#MotoMoment #ThaiGP2026 #MotoGP2026 #TikTukRace #S",
+                    "likes": 289,
+                    "comments": 4,
+                    "url": "https://www.tiktok.com/@vlogmotomoment/video/7612150859270491410",
+                    "date": 1772341989
+                  },
+                  {
+                    "author": "changcircuit",
+                    "text": "เป็นการแข่งขันที่วุ่นวายที่สุด ! 😜\n\n#MotoGP #MotoGP2026\n#PTGrandPrixofThailand2026\n#ThaiGP🇹🇭 #SportsAuthorityofThailand",
+                    "likes": 149,
+                    "comments": 3,
+                    "url": "https://www.tiktok.com/@changcircuit/video/7615918210096958740",
+                    "date": 1773219150
+                  },
+                  {
+                    "author": "vlogmotomoment",
+                    "text": "Tuk Tuk Challenge at ThaiGP2026 💥🔥 \n\n#ThaiGP #MotoGP2026 #MotoMoment #SportAuthorityofThailand #TukTukChallenge ",
+                    "likes": 117,
+                    "comments": 1,
+                    "url": "https://www.tiktok.com/@vlogmotomoment/video/7612335120636284178",
+                    "date": 1772384891
+                  },
+                  {
+                    "author": "thepattayanews",
+                    "text": "Foreign students love the 15 classic Mae Mai Muay Thai techniques,\ntaught by an A-License instructor certified by the Boxing Sport Authority of Thailand,\nSports Authority of Thailand.\nMuay Thai Coach ",
+                    "likes": 52,
+                    "comments": 2,
+                    "url": "https://www.tiktok.com/@thepattayanews/video/7579870242290240788",
+                    "date": 1764826075
+                  },
+                  {
+                    "author": "mixmagazine",
+                    "text": "2026 MOTO GP TUKTUKCHALLENGE💥 #MotoGP #MotoGP2026\n#PTGrandPrixofThailand2026\n#ThaiGP  #SportsAuthorityofThailand",
+                    "likes": 13600,
+                    "comments": 154,
+                    "url": "https://www.tiktok.com/@mixmagazine/video/7612606973418245397",
+                    "date": 1772452800
+                  }
+                ],
+                "stats": {
+                  "total_posts": 30,
+                  "total_likes": 399659,
+                  "total_comments": 2800,
+                  "total_shares": 31282,
+                  "avg_engagement": 14458.0
+                },
+                "kol_mentions": [
+                  {
+                    "username": "ejan2016",
+                    "followers": 6000000,
+                    "platform": "TikTok",
+                    "likes": 70800
+                  },
+                  {
+                    "username": "mgronline",
+                    "followers": 2700000,
+                    "platform": "TikTok",
+                    "likes": 219500
+                  },
+                  {
+                    "username": "inn_news",
+                    "followers": 2000000,
+                    "platform": "TikTok",
+                    "likes": 33
+                  },
+                  {
+                    "username": "changsuek.official",
+                    "followers": 1600000,
+                    "platform": "TikTok",
+                    "likes": 4890
+                  },
+                  {
+                    "username": "changsuek.official",
+                    "followers": 1600000,
+                    "platform": "TikTok",
+                    "likes": 7321
+                  },
+                  {
+                    "username": "mainstandsport",
+                    "followers": 758400,
+                    "platform": "TikTok",
+                    "likes": 240
+                  },
+                  {
+                    "username": "mainstandsport",
+                    "followers": 758400,
+                    "platform": "TikTok",
+                    "likes": 37000
+                  },
+                  {
+                    "username": "thepattayanews",
+                    "followers": 713400,
+                    "platform": "TikTok",
+                    "likes": 52
+                  },
+                  {
+                    "username": "mhoosab.tb8",
+                    "followers": 285700,
+                    "platform": "TikTok",
+                    "likes": 2753
+                  },
+                  {
+                    "username": "muaythaiauthority",
+                    "followers": 144300,
+                    "platform": "TikTok",
+                    "likes": 1302
+                  },
+                  {
+                    "username": "fightclubmuaythai",
+                    "followers": 134400,
+                    "platform": "TikTok",
+                    "likes": 20600
+                  },
+                  {
+                    "username": "eac_news",
+                    "followers": 118700,
+                    "platform": "TikTok",
+                    "likes": 16
+                  },
+                  {
+                    "username": "rajadamnern_stadium",
+                    "followers": 81200,
+                    "platform": "TikTok",
+                    "likes": 25
+                  },
+                  {
+                    "username": "themuaythaiguy",
+                    "followers": 37300,
+                    "platform": "TikTok",
+                    "likes": 29
+                  },
+                  {
+                    "username": "aprilladyaries",
+                    "followers": 22800,
+                    "platform": "TikTok",
+                    "likes": 537
+                  },
+                  {
+                    "username": "mixmagazine",
+                    "followers": 12600,
+                    "platform": "TikTok",
+                    "likes": 13600
+                  },
+                  {
+                    "username": "cnbol.nr2",
+                    "followers": 11400,
+                    "platform": "TikTok",
+                    "likes": 196
+                  }
+                ]
+              }
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "total_results": 30,
+              "items": {
+                "posts": [
+                  {
+                    "author": "useri603toy5ei",
+                    "text": "ทีมดีมีชัยไปกว่าครึ่ง #การกีฬาแห่งประเทศไทยจังหวัดสงขลา #รักทู๊กกกกคน ",
+                    "likes": 16,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@useri603toy5ei/video/7623209833646329096",
+                    "date": 1774916860
+                  },
+                  {
+                    "author": "user5443655928114",
+                    "text": "#เทรนด์วันนี้บรรยากาศยามเช้าหลังการกีฬาแห่งประเทศไทย 🇹🇭🇹🇭🇹🇭                 ##โกโก้หนวดคนรักครอบครัว🤟🏻🤟🏻🤟🏻        ##เขยศรีสะเกษ🥰🥰",
+                    "likes": 66,
+                    "comments": 7,
+                    "url": "https://www.tiktok.com/@user5443655928114/video/7623189153248857364",
+                    "date": 1774912053
+                  },
+                  {
+                    "author": "kruwut.sangmorakot",
+                    "text": "#ครูมวยไทยอาชีพขั้นสูงจากการกีฬาแห่งประเทศไทย (Advanced Professional Boxing Instructor A3 from the Sports Authority of Thailand.\n#Coach มวยไทยสมัครเล่นทีมชาติซาอุดีอาระเบีย.2025-2027\n#ครูมวยโบราณ \n#กร",
+                    "likes": 10,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@kruwut.sangmorakot/video/7623132936048479509",
+                    "date": 1774898961
+                  },
+                  {
+                    "author": "kruwut.sangmorakot",
+                    "text": "#ครูมวยโบราญ\n#ครูมวยไทยอาชีพขั้นสูงจากการกีฬาแห่งประเทศไทย(Advanced Professional Muay Thai Instructor A3 (from the Sports Authority of Thailand)\n#Coach มวยไทยสมัครเล่นทีมชาติซาอุฯ\n#กรรมการและผู้ตัดสิน",
+                    "likes": 10,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@kruwut.sangmorakot/video/7623130998548516117",
+                    "date": 1774898505
+                  },
+                  {
+                    "author": "issaree16",
+                    "text": "#ใกล้เข้ามาแล้ว \n#ชิงแชมป์ประเทศไทย2569 ",
+                    "likes": 29,
+                    "comments": 4,
+                    "url": "https://www.tiktok.com/@issaree16/video/7622521178976029969",
+                    "date": 1774756572
+                  },
+                  {
+                    "author": "buildingsplan.sat",
+                    "text": "การกีฬาแห่งประเทศไทย มีอะไรบ้างไปดูกันค้าบบบบบ 👉 ครบจบเรื่องกีฬาต้องการกีฬาแห่งประเทศไทย 🏋🏻‍♂️🥊🏸🏀🏓🎾⚽️🏐🥋 #การกีฬาแห่งประเทศไทย #กกท #ฟิตเนสกกท #สถานที่ออกกําลังกาย #getfiteveryday ",
+                    "likes": 1754,
+                    "comments": 31,
+                    "url": "https://www.tiktok.com/@buildingsplan.sat/video/7602586556330708231",
+                    "date": 1770115126
+                  },
+                  {
+                    "author": "kruwut.sangmorakot",
+                    "text": "Advanced professional Muay Thai instructor from the Sports Authority of Thailand.\n#ครูมวยไทยอาชีพขั้นสูง รุ่นA3 จาก การกีฬาแห่งประเทศไทย.\n#Coach มวยไทยสมัครเล่นทีมชาติซาอุดิอาระเบีย\n#กรรมการผู้ตัดสินก",
+                    "likes": 44,
+                    "comments": 0,
+                    "url": "https://www.tiktok.com/@kruwut.sangmorakot/video/7622735244793220373",
+                    "date": 1774806360
+                  },
+                  {
+                    "author": "kruwut.sangmorakot",
+                    "text": ":Advanced professional Muay Thai instructor certified by the Sports Authority of Thailand.\n#ครูมวยไทยอาชีพขั้นสูงรุ่น3 จากการกีฬาแห่งประเทศไทยรับรอง\n #Coach ทีมมวยไทยสมัครเล่นทีมชาติซาอุฯ\n#ครูมวยไทยโบ",
+                    "likes": 21,
+                    "comments": 1,
+                    "url": "https://www.tiktok.com/@kruwut.sangmorakot/video/7622685567439899925",
+                    "date": 1774794795
+                  },
+                  {
+                    "author": "narin_k1",
+                    "text": "#🌷💛🌹💚❤️💖💥🖤🖤🖤 ",
+                    "likes": 14,
+                    "comments": 1,
+                    "url": "https://www.tiktok.com/@narin_k1/video/7623014672194637076",
+                    "date": 1774871420
+                  },
+                  {
+                    "author": "ladda2719",
+                    "text": "ถักเปียขึ้นรับเหรียญ \nให้กรรมการถักให้เลยจ้าา 🥇\n\nกีฬานักเรียนองค์การบริหารส่วนท้องถิ่นแห่งประเทศไทย รอบชิงชนะเลิศ ระดับประเทศ  “ศรีเกษเกมส์”  ครั้งที่ 40 \n\n”มิตรภาพเหนือชัย หลอมใจเป็นหนึ่ง“\n\n#ศรีเกษเก",
+                    "likes": 28600,
+                    "comments": 160,
+                    "url": "https://www.tiktok.com/@ladda2719/video/7601074668224744725",
+                    "date": 1769763115
+                  }
+                ],
+                "stats": {
+                  "total_posts": 30,
+                  "total_likes": 61120,
+                  "total_comments": 504,
+                  "total_shares": 2234,
+                  "avg_engagement": 2128.6
+                },
+                "kol_mentions": [
+                  {
+                    "username": "mgronline",
+                    "followers": 2700000,
+                    "platform": "TikTok",
+                    "likes": 125
+                  },
+                  {
+                    "username": "changsuek.official",
+                    "followers": 1600000,
+                    "platform": "TikTok",
+                    "likes": 6325
+                  },
+                  {
+                    "username": "tsports7",
+                    "followers": 649200,
+                    "platform": "TikTok",
+                    "likes": 5276
+                  },
+                  {
+                    "username": "nuidino.new",
+                    "followers": 151700,
+                    "platform": "TikTok",
+                    "likes": 9000
+                  },
+                  {
+                    "username": "wrn_sports",
+                    "followers": 21100,
+                    "platform": "TikTok",
+                    "likes": 1621
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "instagram": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "ไชโยพาส": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "SAT": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "Sports Authority of Thailand": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            }
+          }
+        },
+        "xiaohongshu": {
+          "status": "skipped",
+          "message": "無可用 Apify Actor"
+        }
+      },
+      "kol_summary": [
+        {
+          "username": "ejan2016",
+          "followers": 6000000,
+          "platform": "TikTok",
+          "likes": 70800
+        },
+        {
+          "username": "mgronline",
+          "followers": 2700000,
+          "platform": "TikTok",
+          "likes": 219500
+        },
+        {
+          "username": "mgronline",
+          "followers": 2700000,
+          "platform": "TikTok",
+          "likes": 125
+        },
+        {
+          "username": "sloanealex_",
+          "followers": 2300000,
+          "platform": "TikTok",
+          "likes": 141100
+        },
+        {
+          "username": "inn_news",
+          "followers": 2000000,
+          "platform": "TikTok",
+          "likes": 33
+        },
+        {
+          "username": "changsuek.official",
+          "followers": 1600000,
+          "platform": "TikTok",
+          "likes": 4890
+        },
+        {
+          "username": "changsuek.official",
+          "followers": 1600000,
+          "platform": "TikTok",
+          "likes": 7321
+        },
+        {
+          "username": "changsuek.official",
+          "followers": 1600000,
+          "platform": "TikTok",
+          "likes": 6325
+        },
+        {
+          "username": "mainstandsport",
+          "followers": 758400,
+          "platform": "TikTok",
+          "likes": 240
+        },
+        {
+          "username": "mainstandsport",
+          "followers": 758400,
+          "platform": "TikTok",
+          "likes": 37000
+        },
+        {
+          "username": "thepattayanews",
+          "followers": 713400,
+          "platform": "TikTok",
+          "likes": 52
+        },
+        {
+          "username": "tsports7",
+          "followers": 649200,
+          "platform": "TikTok",
+          "likes": 5276
+        },
+        {
+          "username": "lulu_duangrudee",
+          "followers": 588200,
+          "platform": "TikTok",
+          "likes": 102
+        },
+        {
+          "username": "maheen.mughal30",
+          "followers": 518300,
+          "platform": "TikTok",
+          "likes": 352200
+        },
+        {
+          "username": "yoursatcoach",
+          "followers": 479700,
+          "platform": "TikTok",
+          "likes": 780600
+        },
+        {
+          "username": "yoursatcoach",
+          "followers": 479700,
+          "platform": "TikTok",
+          "likes": 145500
+        },
+        {
+          "username": "jaejaaaaaa",
+          "followers": 391000,
+          "platform": "TikTok",
+          "likes": 37
+        },
+        {
+          "username": "ryan.choice",
+          "followers": 361200,
+          "platform": "TikTok",
+          "likes": 129200
+        },
+        {
+          "username": "mhoosab.tb8",
+          "followers": 285700,
+          "platform": "TikTok",
+          "likes": 2753
+        },
+        {
+          "username": "elisempham",
+          "followers": 282100,
+          "platform": "TikTok",
+          "likes": 44800
+        }
+      ]
     }
   ],
   "metadata": {
     "created": "2026-03-31T05:01:48.799502",
-    "last_updated": "2026-03-31T06:02:31.792228"
+    "last_updated": "2026-03-31T06:08:01.932968"
   }
 }
