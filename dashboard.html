@@ -506,20 +506,22 @@ function renderDashboard(data) {
 
   // ── KPI Cards ──
   const gt = latest.platforms?.google_trends;
-  if (gt?.status === 'success') {
-    const targetKw = kw === 'ALL' ? Object.keys(gt.data)[0] : kw;
-    if (targetKw && gt.data[targetKw]) {
-      const score = gt.data[targetKw].current_score ?? '--';
-      const trend = gt.data[targetKw].trend_direction ?? 'stable';
-      document.getElementById('kpiTrend').textContent = score + '/100';
-      const changeEl = document.getElementById('kpiTrendChange');
-      changeEl.textContent = trend === 'rising' ? '↑ 上升中' : trend === 'declining' ? '↓ 下降中' : '→ 穩定';
-      changeEl.className = 'kpi-change ' + (trend === 'rising' ? 'up' : trend === 'declining' ? 'down' : 'stable');
-    } else {
-      document.getElementById('kpiTrend').textContent = '0/100';
-      document.getElementById('kpiTrendChange').textContent = '→ 穩定';
-      document.getElementById('kpiTrendChange').className = 'kpi-change stable';
+  if (gt?.status === 'success' && gt.data) {
+    let bestScore = 0, bestTrend = 'stable';
+    if (kw === 'ALL') {
+      // ALL 模式：取所有關鍵字中最高分數
+      for (const kwData of Object.values(gt.data)) {
+        const s = kwData?.current_score ?? 0;
+        if (s > bestScore) { bestScore = s; bestTrend = kwData.trend_direction ?? 'stable'; }
+      }
+    } else if (gt.data[kw]) {
+      bestScore = gt.data[kw].current_score ?? 0;
+      bestTrend = gt.data[kw].trend_direction ?? 'stable';
     }
+    document.getElementById('kpiTrend').textContent = bestScore + '/100';
+    const changeEl = document.getElementById('kpiTrendChange');
+    changeEl.textContent = bestTrend === 'rising' ? '↑ 上升中' : bestTrend === 'declining' ? '↓ 下降中' : '→ 穩定';
+    changeEl.className = 'kpi-change ' + (bestTrend === 'rising' ? 'up' : bestTrend === 'declining' ? 'down' : 'stable');
   }
 
   // Count posts across platforms (filtered by keyword)
