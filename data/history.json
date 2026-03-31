@@ -1,12 +1,4 @@
 {
-  "last_updated": "2026-03-31T05:01:48.801682",
-  "keywords": [
-    "Chai Yo Pass",
-    "ไชโยพาส",
-    "SAT",
-    "Sports Authority of Thailand",
-    "การกีฬาแห่งประเทศไทย"
-  ],
   "records": [
     {
       "timestamp": "2026-03-31T05:01:01.519139",
@@ -671,5 +663,9 @@
       },
       "kol_summary": []
     }
-  ]
+  ],
+  "metadata": {
+    "created": "2026-03-31T05:01:48.799502",
+    "last_updated": "2026-03-31T05:01:01.519139"
+  }
 }
