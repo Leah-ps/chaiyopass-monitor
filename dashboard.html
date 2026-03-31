@@ -762,14 +762,19 @@ function renderPostsTable(platforms, matchKw) {
 
   if (allPosts.length === 0) return;
 
-  tbody.innerHTML = allPosts.slice(0, 20).map(p => `
-    <tr>
+  tbody.innerHTML = allPosts.slice(0, 20).map(p => {
+    const content = (p.text || p.title || '').substring(0, 60) + ((p.text || p.title || '').length > 60 ? '...' : '');
+    const url = p.url || p.webVideoUrl || '';
+    const linked = url
+      ? `<a href="${url}" target="_blank" rel="noopener" style="color:var(--accent-blue); text-decoration:none;" title="${(p.text || p.title || '').substring(0, 200)}">${content} ↗</a>`
+      : content;
+    return `<tr>
       <td><span class="badge badge-${badgeMap[p.platform] || 'google'}">${nameMap[p.platform] || p.platform}</span></td>
       <td>${p.author || p.title?.substring(0, 20) || '--'}</td>
-      <td>${(p.text || p.title || '').substring(0, 80)}${(p.text || p.title || '').length > 80 ? '...' : ''}</td>
+      <td>${linked}</td>
       <td>${((p.likes || 0) + (p.comments || 0)).toLocaleString()}</td>
-    </tr>
-  `).join('');
+    </tr>`;
+  }).join('');
 }
 
 function renderRelatedKeywords(gtData) {
