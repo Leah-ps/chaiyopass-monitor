@@ -848,7 +848,6 @@ async function triggerCollect() {
   const btn = document.getElementById('collectBtn');
   const REPO = 'Leah-ps/chaiyopass-monitor';
   const WORKFLOW = 'daily-monitor.yml';
-  // Try GitHub API first (needs PAT), fallback to opening Actions page
   const token = localStorage.getItem('gh_pat') || '';
   if (token) {
     btn.classList.add('loading');
@@ -866,14 +865,7 @@ async function triggerCollect() {
       );
       if (resp.status === 204) {
         btn.classList.remove('loading');
-        btn.classList.add('success');
-        btn.innerHTML = '<span class="btn-icon">\u2705</span> \u5df2\u89f8\u767c\u6536\u96c6';
-        setTimeout(function(){
-          btn.classList.remove('success');
-          btn.innerHTML = '<span class="btn-icon">\ud83d\udd04</span><span class="spinner"></span> \u7acb\u5373\u6536\u96c6\u6578\u64da';
-        }, 5000);
-        // Reload data after 90 seconds
-        setTimeout(loadData, 90000);
+        startPollingForNewData();
         return;
       }
     } catch(e) { /* fallback */ }
@@ -881,6 +873,39 @@ async function triggerCollect() {
   }
   // Fallback: open GitHub Actions page
   window.open('https://github.com/' + REPO + '/actions/workflows/' + WORKFLOW, '_blank');
+  startPollingForNewData();
+}
+
+function startPollingForNewData() {
+  const btn = document.getElementById('collectBtn');
+  const oldTs = document.getElementById('lastUpdated').textContent;
+  let attempts = 0;
+  const maxAttempts = 20;
+  btn.innerHTML = '<span class="btn-icon">⏳</span><span class="spinner"></span> 等待資料更新...';
+  btn.classList.add('loading');
+  const poll = setInterval(async function() {
+    attempts++;
+    try {
+      await loadData();
+      const newTs = document.getElementById('lastUpdated').textContent;
+      if (newTs !== oldTs) {
+        clearInterval(poll);
+        btn.classList.remove('loading');
+        btn.classList.add('success');
+        btn.innerHTML = '<span class="btn-icon">✅</span> 資料已更新';
+        setTimeout(function(){
+          btn.classList.remove('success');
+          btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+        }, 5000);
+        return;
+      }
+    } catch(e) {}
+    if (attempts >= maxAttempts) {
+      clearInterval(poll);
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+    }
+  }, 30000);
 }
 
 // ── Auto Refresh ──
