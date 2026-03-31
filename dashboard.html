@@ -270,16 +270,42 @@
   }
 
   /* ── Keyword Chips ── */
-  .keyword-chips { display: flex; gap: 8px; margin-bottom: 20px; }
+  .keyword-chips { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
   .chip {
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 16px;
-    background: rgba(74,144,217,0.15);
+    background: rgba(74,144,217,0.12);
     color: var(--accent-blue);
     font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1.5px solid transparent;
+    user-select: none;
   }
-  .chip.th { background: rgba(155,89,182,0.15); color: var(--accent-purple); }
+  .chip:hover { background: rgba(74,144,217,0.25); }
+  .chip.active {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 2px 8px rgba(74,144,217,0.35);
+  }
+  .chip.th { background: rgba(155,89,182,0.12); color: var(--accent-purple); }
+  .chip.th:hover { background: rgba(155,89,182,0.25); }
+  .chip.th.active {
+    background: var(--accent-purple);
+    color: #fff;
+    border-color: var(--accent-purple);
+    box-shadow: 0 2px 8px rgba(155,89,182,0.35);
+  }
+  .chip.all { background: rgba(46,204,113,0.12); color: var(--accent-green); }
+  .chip.all:hover { background: rgba(46,204,113,0.25); }
+  .chip.all.active {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: var(--accent-green);
+    box-shadow: 0 2px 8px rgba(46,204,113,0.35);
+  }
 
   /* ── Responsive ── */
   @media (max-width: 768px) {
@@ -308,13 +334,14 @@
 
 <div class="container">
 
-  <!-- Keyword Chips -->
-  <div class="keyword-chips">
-    <div class="chip">Chai Yo Pass</div>
-    <div class="chip th">ไชโยพาส</div>
-    <div class="chip">SAT</div>
-    <div class="chip">Sports Authority of Thailand</div>
-    <div class="chip th">การกีฬาแห่งประเทศไทย</div>
+  <!-- Keyword Chips (Filter) -->
+  <div class="keyword-chips" id="keywordChips">
+    <div class="chip all active" onclick="selectKeyword('ALL')">ALL</div>
+    <div class="chip" onclick="selectKeyword('Chai Yo Pass')">Chai Yo Pass</div>
+    <div class="chip th" onclick="selectKeyword('ไชโยพาส')">ไชโยพาส</div>
+    <div class="chip" onclick="selectKeyword('SAT')">SAT</div>
+    <div class="chip" onclick="selectKeyword('Sports Authority of Thailand')">Sports Authority of Thailand</div>
+    <div class="chip th" onclick="selectKeyword('การกีฬาแห่งประเทศไทย')">การกีฬาแห่งประเทศไทย</div>
   </div>
 
   <!-- KPI Cards -->
@@ -437,12 +464,26 @@ const DATA_FILE = 'data/dashboard_data.json';
 let chartTrend = null;
 let chartPlatform = null;
 let chartEngagement = null;
+let currentData = null;
+let selectedKeyword = 'ALL';
+
+function selectKeyword(kw) {
+  selectedKeyword = kw;
+  // Update chip active states
+  document.querySelectorAll('#keywordChips .chip').forEach(c => {
+    c.classList.remove('active');
+    if (c.textContent.trim() === kw) c.classList.add('active');
+  });
+  // Re-render with filter
+  if (currentData) renderDashboard(currentData);
+}
 
 async function loadData() {
   try {
     const resp = await fetch(DATA_FILE);
     if (!resp.ok) throw new Error('No data file found');
     const data = await resp.json();
+    currentData = data;
     renderDashboard(data);
   } catch (e) {
     console.log('No data yet - showing empty state. Run collector.py first.');
@@ -459,25 +500,34 @@ function renderDashboard(data) {
   document.getElementById('lastUpdated').textContent =
     `最後更新: ${dt.toLocaleDateString('zh-TW')} ${dt.toLocaleTimeString('zh-TW')}`;
 
+  // ── Helper: check if keyword matches filter ──
+  const kw = selectedKeyword;
+  const matchKw = (k) => kw === 'ALL' || k === kw;
+
   // ── KPI Cards ──
   const gt = latest.platforms?.google_trends;
   if (gt?.status === 'success') {
-    const firstKw = Object.keys(gt.data)[0];
-    if (firstKw && gt.data[firstKw]) {
-      const score = gt.data[firstKw].current_score ?? '--';
-      const trend = gt.data[firstKw].trend_direction ?? 'stable';
+    const targetKw = kw === 'ALL' ? Object.keys(gt.data)[0] : kw;
+    if (targetKw && gt.data[targetKw]) {
+      const score = gt.data[targetKw].current_score ?? '--';
+      const trend = gt.data[targetKw].trend_direction ?? 'stable';
       document.getElementById('kpiTrend').textContent = score + '/100';
       const changeEl = document.getElementById('kpiTrendChange');
       changeEl.textContent = trend === 'rising' ? '↑ 上升中' : trend === 'declining' ? '↓ 下降中' : '→ 穩定';
       changeEl.className = 'kpi-change ' + (trend === 'rising' ? 'up' : trend === 'declining' ? 'down' : 'stable');
+    } else {
+      document.getElementById('kpiTrend').textContent = '0/100';
+      document.getElementById('kpiTrendChange').textContent = '→ 穩定';
+      document.getElementById('kpiTrendChange').className = 'kpi-change stable';
     }
   }
 
-  // Count posts across platforms
+  // Count posts across platforms (filtered by keyword)
   let totalPosts = 0, totalEng = 0, kolCount = 0;
   for (const [pname, pdata] of Object.entries(latest.platforms || {})) {
     if (pdata?.status === 'success' && pdata.data) {
-      for (const kwData of Object.values(pdata.data)) {
+      for (const [kwKey, kwData] of Object.entries(pdata.data)) {
+        if (!matchKw(kwKey)) continue;
         if (kwData?.items?.stats) {
           totalPosts += kwData.items.stats.total_posts || 0;
           totalEng += (kwData.items.stats.total_likes || 0) +
@@ -488,7 +538,10 @@ function renderDashboard(data) {
       }
     }
   }
-  kolCount = (latest.kol_summary || []).length;
+  const filteredKols = (latest.kol_summary || []).filter(k =>
+    kw === 'ALL' || k.keyword === kw
+  );
+  kolCount = filteredKols.length;
 
   document.getElementById('kpiPosts').textContent = totalPosts.toLocaleString();
   document.getElementById('kpiEngagement').textContent = totalEng.toLocaleString();
@@ -496,26 +549,38 @@ function renderDashboard(data) {
   document.getElementById('kpiPlatforms').textContent =
     Object.keys(latest.platforms || {}).length;
 
-  // ── Trend Chart ──
+  // ── Trend Chart (filtered) ──
   if (gt?.status === 'success') {
-    renderTrendChart(gt.data);
+    if (kw === 'ALL') {
+      renderTrendChart(gt.data);
+    } else {
+      const filtered = {};
+      if (gt.data[kw]) filtered[kw] = gt.data[kw];
+      renderTrendChart(filtered);
+    }
   }
 
-  // ── Platform Chart ──
-  renderPlatformChart(latest.platforms);
+  // ── Platform Chart (filtered) ──
+  renderPlatformChart(latest.platforms, matchKw);
 
-  // ── Engagement Chart ──
-  renderEngagementChart(latest.platforms);
+  // ── Engagement Chart (filtered) ──
+  renderEngagementChart(latest.platforms, matchKw);
 
-  // ── KOL Table ──
-  renderKolTable(latest.kol_summary || []);
+  // ── KOL Table (filtered) ──
+  renderKolTable(filteredKols);
 
-  // ── Posts Table ──
-  renderPostsTable(latest.platforms);
+  // ── Posts Table (filtered) ──
+  renderPostsTable(latest.platforms, matchKw);
 
-  // ── Related Keywords ──
+  // ── Related Keywords (filtered) ──
   if (gt?.status === 'success') {
-    renderRelatedKeywords(gt.data);
+    if (kw === 'ALL') {
+      renderRelatedKeywords(gt.data);
+    } else {
+      const filtered = {};
+      if (gt.data[kw]) filtered[kw] = gt.data[kw];
+      renderRelatedKeywords(filtered);
+    }
   }
 }
 
@@ -561,7 +626,8 @@ function renderTrendChart(gtData) {
   });
 }
 
-function renderPlatformChart(platforms) {
+function renderPlatformChart(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
   const labels = [];
   const values = [];
   const colors = [];
@@ -577,7 +643,8 @@ function renderPlatformChart(platforms) {
   for (const [pname, pdata] of Object.entries(platforms || {})) {
     if (pdata?.status === 'success') {
       let count = 0;
-      for (const kwData of Object.values(pdata.data || {})) {
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
         count += kwData?.items?.stats?.total_posts || kwData?.post_count || 0;
       }
       labels.push(nameMap[pname] || pname);
@@ -605,7 +672,8 @@ function renderPlatformChart(platforms) {
   });
 }
 
-function renderEngagementChart(platforms) {
+function renderEngagementChart(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
   const labels = [];
   const likes = [], comments = [], shares = [];
   const nameMap = {
@@ -615,7 +683,8 @@ function renderEngagementChart(platforms) {
   for (const [pname, pdata] of Object.entries(platforms || {})) {
     if (pdata?.status === 'success' && pname !== 'google_trends') {
       let l = 0, c = 0, s = 0;
-      for (const kwData of Object.values(pdata.data || {})) {
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
         if (kwData?.items?.stats) {
           l += kwData.items.stats.total_likes || 0;
           c += kwData.items.stats.total_comments || 0;
@@ -666,7 +735,8 @@ function renderKolTable(kols) {
   `).join('');
 }
 
-function renderPostsTable(platforms) {
+function renderPostsTable(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
   const tbody = document.getElementById('postsBody');
   const allPosts = [];
   const badgeMap = {
@@ -678,7 +748,8 @@ function renderPostsTable(platforms) {
 
   for (const [pname, pdata] of Object.entries(platforms || {})) {
     if (pdata?.status === 'success' && pname !== 'google_trends') {
-      for (const kwData of Object.values(pdata.data || {})) {
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
         const posts = kwData?.items?.posts || kwData?.posts || [];
         for (const p of posts) {
           allPosts.push({ ...p, platform: pname });
