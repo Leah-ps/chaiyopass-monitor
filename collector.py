@@ -324,8 +324,9 @@ def collect_via_apify(platform, actor_id, build_input_fn):
         for kw in config.KEYWORDS:
             actor_input = build_input_fn(kw)
 
-            # 啟動 Apify Actor
-            run_url = f"https://api.apify.com/v2/acts/{actor_id}/runs"
+            # 啟動 Apify Actor（API 使用 ~ 分隔 user/actor）
+            api_actor_id = actor_id.replace("/", "~")
+            run_url = f"https://api.apify.com/v2/acts/{api_actor_id}/runs"
             headers = {"Authorization": f"Bearer {api_token}"}
 
             resp = requests.post(
