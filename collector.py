@@ -13,6 +13,7 @@ import os
 import sys
 import time
 import traceback
+import urllib.parse
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -51,96 +52,37 @@ def save_latest(record):
 # ══════════════════════════════════════════════
 def collect_google_trends():
     """
-    使用 pytrends 收集 Google Trends 數據（含重試機制）
-    回傳: {keyword: {date: score, ...}, ...}
+    收集 Google Trends 數據
+    方法 1: pytrends 套件
+    方法 2: 直接 HTTP 呼叫 Google Trends API
+    方法 3: 沿用上次數據
     """
     print("  📊 收集 Google Trends 數據...")
-    try:
-        from pytrends.request import TrendReq
-    except ImportError:
-        print("    ⚠️  pytrends 未安裝，執行: pip install pytrends")
-        return {"status": "error", "message": "pytrends not installed"}
 
-    max_retries = 3
-    results = {}
-    all_keywords = config.KEYWORDS + config.COMPETITOR_KEYWORDS
-    batch_size = 5
+    # === 方法 1: pytrends ===
+    result = _google_trends_via_pytrends()
+    if result:
+        return {"status": "success", "data": result}
 
-    for attempt in range(1, max_retries + 1):
-        try:
-            print(f"    嘗試第 {attempt} 次連線 Google Trends...")
-            pytrends = TrendReq(
-                hl=config.GOOGLE_TRENDS["language"],
-                tz=420,
-                timeout=(10, 30),
-                retries=3,
-                backoff_factor=1,
-            )
+    # === 方法 2: 直接 HTTP 呼叫 Google Trends ===
+    result = _google_trends_via_http()
+    if result:
+        return {"status": "success", "data": result, "note": "via direct HTTP"}
 
-            for i in range(0, len(all_keywords), batch_size):
-                batch = all_keywords[i:i + batch_size]
-                pytrends.build_payload(
-                    kw_list=batch,
-                    cat=0,
-                    timeframe=config.GOOGLE_TRENDS["timeframe"],
-                    geo=config.GOOGLE_TRENDS["geo"],
-                )
+    # === 方法 3: 沿用上次數據 ===
+    prev_data = _load_previous_google_trends()
+    if prev_data:
+        print("    ♻️  已沿用上次 Google Trends 數據")
+        for kw_data in prev_data.values():
+            if isinstance(kw_data, dict):
+                kw_data["note"] = "沿用上次數據（Google 暫時封鎖）"
+        return {"status": "success", "data": prev_data, "note": "reused previous data"}
 
-                interest_over_time = pytrends.interest_over_time()
-                if not interest_over_time.empty:
-                    for kw in batch:
-                        if kw in interest_over_time.columns:
-                            series = interest_over_time[kw]
-                            results[kw] = {
-                                "trend_data": {
-                                    str(date.date()): int(val)
-                                    for date, val in series.items()
-                                },
-                                "current_score": int(series.iloc[-1]) if len(series) > 0 else 0,
-                                "avg_score": round(float(series.mean()), 1),
-                                "max_score": int(series.max()),
-                                "trend_direction": _calc_trend(series),
-                            }
-
-                time.sleep(3)
-
-            # 相關查詢
-            for kw in config.KEYWORDS:
-                try:
-                    pytrends.build_payload(
-                        [kw],
-                        timeframe=config.GOOGLE_TRENDS["timeframe"],
-                        geo=config.GOOGLE_TRENDS["geo"],
-                    )
-                    related = pytrends.related_queries()
-                    if kw in related and related[kw]["rising"] is not None:
-                        rising_df = related[kw]["rising"]
-                        results.setdefault(kw, {})["related_rising"] = (
-                            rising_df.head(10).to_dict("records")
-                        )
-                    if kw in related and related[kw]["top"] is not None:
-                        top_df = related[kw]["top"]
-                        results.setdefault(kw, {})["related_top"] = (
-                            top_df.head(10).to_dict("records")
-                        )
-                    time.sleep(2)
-                except Exception:
-                    pass
-
-            print(f"    ✅ 成功收集 {len(results)} 個關鍵字的趨勢數據")
-            return {"status": "success", "data": results}
-
-        except Exception as e:
-            print(f"    ⚠️  第 {attempt} 次失敗: {e}")
-            if attempt < max_retries:
-                wait = attempt * 10
-                print(f"    ⏳ 等待 {wait} 秒後重試...")
-                time.sleep(wait)
-
-    # 所有重試都失敗，產生模擬數據讓儀表板不會空白
-    print("    ⚠️  Google Trends 連線失敗，使用估算數據")
+    # === 方法 4: 零值保底 ===
+    print("    ⚠️  所有方法都失敗，使用空白數據")
     from datetime import date as dt_date
     today = dt_date.today()
+    results = {}
     for kw in config.KEYWORDS:
         dates = {}
         for d in range(30):
@@ -154,7 +96,216 @@ def collect_google_trends():
             "trend_direction": "stable",
             "note": "Google Trends 連線失敗，數據待更新",
         }
-    return {"status": "success", "data": results, "note": "fallback data - Google blocked"}
+    return {"status": "success", "data": results, "note": "all methods failed"}
+
+
+def _google_trends_via_pytrends():
+    """方法 1: 用 pytrends 套件"""
+    try:
+        from pytrends.request import TrendReq
+    except ImportError:
+        print("    ⚠️  pytrends 未安裝")
+        return None
+
+    results = {}
+    all_keywords = config.KEYWORDS + config.COMPETITOR_KEYWORDS
+    batch_size = 5
+
+    for attempt in range(1, 4):
+        try:
+            print(f"    [pytrends] 第 {attempt} 次嘗試...")
+            pytrends = TrendReq(
+                hl=config.GOOGLE_TRENDS["language"],
+                tz=420,
+                timeout=(10, 30),
+                retries=3,
+                backoff_factor=1,
+                requests_args={
+                    "headers": {
+                        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                                      "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                      "Chrome/122.0.0.0 Safari/537.36",
+                    }
+                },
+            )
+
+            for i in range(0, len(all_keywords), batch_size):
+                batch = all_keywords[i:i + batch_size]
+                pytrends.build_payload(
+                    kw_list=batch, cat=0,
+                    timeframe=config.GOOGLE_TRENDS["timeframe"],
+                    geo=config.GOOGLE_TRENDS["geo"],
+                )
+                interest = pytrends.interest_over_time()
+                if not interest.empty:
+                    for kw in batch:
+                        if kw in interest.columns:
+                            series = interest[kw]
+                            results[kw] = {
+                                "trend_data": {
+                                    str(d.date()): int(v) for d, v in series.items()
+                                },
+                                "current_score": int(series.iloc[-1]) if len(series) > 0 else 0,
+                                "avg_score": round(float(series.mean()), 1),
+                                "max_score": int(series.max()),
+                                "trend_direction": _calc_trend(series),
+                            }
+                time.sleep(3)
+
+            if results:
+                print(f"    ✅ [pytrends] 成功取得 {len(results)} 個關鍵字")
+                return results
+
+        except Exception as e:
+            print(f"    ⚠️  [pytrends] 第 {attempt} 次失敗: {e}")
+            if attempt < 3:
+                time.sleep(attempt * 10)
+
+    return None
+
+
+def _google_trends_via_http():
+    """方法 2: 直接 HTTP 呼叫 Google Trends 內部 API"""
+    import requests
+
+    print("    🔄 [HTTP] 嘗試直接呼叫 Google Trends API...")
+
+    session = requests.Session()
+    session.headers.update({
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                      "AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9,th;q=0.8",
+        "Referer": "https://trends.google.com/trends/explore",
+    })
+
+    results = {}
+    geo = config.GOOGLE_TRENDS.get("geo", "TH")
+
+    for kw in config.KEYWORDS:
+        try:
+            # Step 1: 取得 explore token
+            req_payload = {
+                "comparisonItem": [{"keyword": kw, "geo": geo, "time": "today 3-m"}],
+                "category": 0,
+                "property": "",
+            }
+            explore_url = (
+                "https://trends.google.com/trends/api/explore"
+                f"?hl=th&tz=-420&req={urllib.parse.quote(json.dumps(req_payload))}"
+            )
+
+            resp = session.get(explore_url, timeout=15)
+            if resp.status_code != 200:
+                print(f"    ⚠️  [HTTP] explore 失敗 ({resp.status_code}) for {kw}")
+                continue
+
+            # Google 回傳前面有 )]}'  需要跳過
+            text = resp.text
+            if text.startswith(")]}\x27"):
+                text = text[5:]
+            elif text.startswith(")]}'"):
+                text = text[5:]
+            explore_data = json.loads(text)
+
+            # 找到 TIMESERIES widget 的 token
+            widgets = explore_data.get("widgets", [])
+            ts_widget = None
+            for w in widgets:
+                if w.get("id") == "TIMESERIES":
+                    ts_widget = w
+                    break
+
+            if not ts_widget:
+                print(f"    ⚠️  [HTTP] 找不到 TIMESERIES widget for {kw}")
+                continue
+
+            token = ts_widget.get("token", "")
+            req_obj = ts_widget.get("request", {})
+
+            # Step 2: 取得趨勢資料
+            multiline_url = (
+                "https://trends.google.com/trends/api/widgetdata/multiline"
+                f"?hl=th&tz=-420&req={urllib.parse.quote(json.dumps(req_obj))}"
+                f"&token={token}"
+            )
+
+            resp2 = session.get(multiline_url, timeout=15)
+            if resp2.status_code != 200:
+                print(f"    ⚠️  [HTTP] multiline 失敗 ({resp2.status_code}) for {kw}")
+                continue
+
+            text2 = resp2.text
+            if text2.startswith(")]}\x27"):
+                text2 = text2[5:]
+            elif text2.startswith(")]}'"):
+                text2 = text2[5:]
+            ml_data = json.loads(text2)
+
+            # 解析時間序列
+            timeline = ml_data.get("default", {}).get("timelineData", [])
+            if not timeline:
+                continue
+
+            trend_data = {}
+            values = []
+            for point in timeline:
+                ts = int(point.get("time", 0))
+                if ts > 0:
+                    from datetime import date as dt_date
+                    day = dt_date.fromtimestamp(ts)
+                    val = point.get("value", [0])[0]
+                    trend_data[str(day)] = val
+                    values.append(val)
+
+            if values:
+                results[kw] = {
+                    "trend_data": trend_data,
+                    "current_score": values[-1],
+                    "avg_score": round(sum(values) / len(values), 1),
+                    "max_score": max(values),
+                    "trend_direction": (
+                        "rising" if len(values) >= 7 and sum(values[-7:]) / 7 > sum(values[:7]) / 7 * 1.1
+                        else "declining" if len(values) >= 7 and sum(values[-7:]) / 7 < sum(values[:7]) / 7 * 0.9
+                        else "stable"
+                    ),
+                }
+                print(f"    ✅ [HTTP] {kw}: score={values[-1]}")
+
+            time.sleep(2)
+
+        except Exception as e:
+            print(f"    ⚠️  [HTTP] {kw} 錯誤: {e}")
+            continue
+
+    if results:
+        print(f"    ✅ [HTTP] 成功取得 {len(results)} 個關鍵字")
+        return results
+
+    print("    ⚠️  [HTTP] 所有關鍵字都失敗")
+    return None
+
+
+def _load_previous_google_trends():
+    """載入上一次成功的 Google Trends 數據"""
+    try:
+        if HISTORY_FILE.exists():
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                history = json.load(f)
+            for record in reversed(history.get("records", [])):
+                gt = record.get("platforms", {}).get("google_trends", {})
+                if gt.get("status") == "success":
+                    data = gt.get("data", {})
+                    has_real = any(
+                        isinstance(v, dict) and v.get("current_score", 0) > 0
+                        for v in data.values()
+                    )
+                    if has_real:
+                        return data
+    except Exception as e:
+        print(f"    ⚠️  讀取歷史 Google Trends 失敗: {e}")
+    return None
 
 
 def _calc_trend(series):
