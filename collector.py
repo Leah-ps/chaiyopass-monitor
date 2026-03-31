@@ -45,6 +45,7 @@ def save_latest(record):
     with open(LATEST_FILE, "w", encoding="utf-8") as f:
         json.dump(record, f, ensure_ascii=False, indent=2)
 
+
 # ══════════════════════════════════════════════
 #  1. Google Trends 收集器
 # ══════════════════════════════════════════════
@@ -239,6 +240,7 @@ def collect_pantip():
                         if resp2.status_code == 200:
                             from bs4 import BeautifulSoup
                             soup = BeautifulSoup(resp2.text, "html.parser")
+                            # 多種選擇器嘗試
                             selectors = [
                                 "a[href*='/topic/']",
                                 ".display-post-wrapper a",
@@ -322,6 +324,7 @@ def collect_via_apify(platform, actor_id, build_input_fn):
         for kw in config.KEYWORDS:
             actor_input = build_input_fn(kw)
 
+            # 啟動 Apify Actor
             run_url = f"https://api.apify.com/v2/acts/{actor_id}/runs"
             headers = {"Authorization": f"Bearer {api_token}"}
 
@@ -343,6 +346,7 @@ def collect_via_apify(platform, actor_id, build_input_fn):
                 results[kw] = {"error": "無法取得 run ID"}
                 continue
 
+            # 等待完成（最多 120 秒）
             print(f"    ⏳ 等待 {platform} 爬蟲完成 (關鍵字: {kw})...")
             for _ in range(24):
                 time.sleep(5)
@@ -358,12 +362,13 @@ def collect_via_apify(platform, actor_id, build_input_fn):
                     results[kw] = {"error": f"爬蟲狀態: {status}"}
                     break
             else:
-                results[kw] = {"error": "逾時"}
+                results[kw] = {"error": "逎時"}
                 continue
 
             if "error" in results.get(kw, {}):
                 continue
 
+            # 取得結果
             dataset_id = status_resp.json().get("data", {}).get("defaultDatasetId")
             if dataset_id:
                 items_resp = requests.get(
@@ -395,6 +400,7 @@ def _summarize_social_items(items, platform):
     kol_mentions = []
 
     for item in items[:50]:
+        # 不同平台欄位名稱不同
         likes = item.get("diggCount") or item.get("likesCount") or item.get("likes") or 0
         comments = item.get("commentCount") or item.get("commentsCount") or item.get("comments") or 0
         shares = item.get("shareCount") or item.get("sharesCount") or item.get("shares") or 0
@@ -410,6 +416,7 @@ def _summarize_social_items(items, platform):
         total_comments += int(comments) if comments else 0
         total_shares += int(shares) if shares else 0
 
+        # KOL 偵測（粉絲數 > 10000）
         if followers and int(followers) > 10000:
             kol_mentions.append({
                 "username": author,
@@ -453,7 +460,8 @@ def _tiktok_input(keyword):
 
 def _instagram_input(keyword):
     return {
-        "hashtags": [keyword.replace(" ", "").lower()],
+        "search": keyword,
+        "searchType": "hashtag",
         "resultsLimit": 30,
     }
 
@@ -461,7 +469,7 @@ def _xiaohongshu_input(keyword):
     return {
         "searchKeyword": keyword,
         "maxItems": 30,
-  }
+    }
 
 
 # ══════════════════════════════════════════════
@@ -483,15 +491,15 @@ def run_collection(trend_only=False, social_only=False):
         "platforms": {},
     }
 
-    # 1. Google Trends
+    # 1. Google Trends（免費）
     if not social_only:
         record["platforms"]["google_trends"] = collect_google_trends()
 
-    # 2. Pantip
+    # 2. Pantip（免費）
     if not trend_only:
         record["platforms"]["pantip"] = collect_pantip()
 
-    # 3. TikTok
+    # 3. TikTok（需 Apify）
     if not trend_only and "tiktok" in config.PLATFORMS:
         record["platforms"]["tiktok"] = collect_via_apify(
             "TikTok",
@@ -499,7 +507,7 @@ def run_collection(trend_only=False, social_only=False):
             _tiktok_input,
         )
 
-    # 4. Instagram
+    # 4. Instagram（需 Apify）
     if not trend_only and "instagram" in config.PLATFORMS:
         record["platforms"]["instagram"] = collect_via_apify(
             "Instagram",
@@ -507,13 +515,18 @@ def run_collection(trend_only=False, social_only=False):
             _instagram_input,
         )
 
-    # 5. 小紅書
+    # 5. 小紅書（需 Apify）— 暫時停用，無可用 Actor
     if not trend_only and "xiaohongshu" in config.PLATFORMS:
-        record["platforms"]["xiaohongshu"] = collect_via_apify(
-            "小紅書",
-            config.APIFY["xiaohongshu_actor"],
-            _xiaohongshu_input,
-        )
+        xhs_actor = config.APIFY.get("xiaohongshu_actor", "")
+        if xhs_actor:
+            record["platforms"]["xiaohongshu"] = collect_via_apify(
+                "小紅書",
+                xhs_actor,
+                _xiaohongshu_input,
+            )
+        else:
+            print("  ⚠️  小紅書 Actor 未設定，跳過")
+            record["platforms"]["xiaohongshu"] = {"status": "skipped", "message": "無可用 Apify Actor"}
 
     # 彙整 KOL 資訊
     all_kols = []
@@ -550,7 +563,7 @@ def generate_dashboard_data(history):
     dashboard_data = {
         "last_updated": datetime.now().isoformat(),
         "keywords": config.KEYWORDS,
-        "records": history["records"][-90:],
+        "records": history["records"][-90:],  # 保留最近 90 天
     }
     with open(DATA_DIR / "dashboard_data.json", "w", encoding="utf-8") as f:
         json.dump(dashboard_data, f, ensure_ascii=False, indent=2)
