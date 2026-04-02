@@ -497,7 +497,8 @@ function renderDashboard(data) {
   if (!latest) return;
 
   // Update timestamp
-  const dt = new Date(data.last_updated);
+  const ts = data.last_updated.endsWith('Z') ? data.last_updated : data.last_updated + 'Z';
+      const dt = new Date(ts);
   document.getElementById('lastUpdated').textContent =
     `最後更新: ${dt.toLocaleString('zh-TW',{timeZone:'Asia/Bangkok'})}`;
 

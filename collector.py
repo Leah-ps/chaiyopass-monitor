@@ -14,7 +14,7 @@ import sys
 import time
 import traceback
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import config
@@ -32,7 +32,7 @@ def load_history():
     if HISTORY_FILE.exists():
         with open(HISTORY_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
-    return {"records": [], "metadata": {"created": datetime.now().isoformat()}}
+    return {"records": [], "metadata": {"created": datetime.now(timezone.utc).isoformat()}}
 
 
 def save_history(history):
@@ -629,7 +629,7 @@ def _xiaohongshu_input(keyword):
 # ══════════════════════════════════════════════
 def run_collection(trend_only=False, social_only=False):
     """執行完整的資料收集"""
-    timestamp = datetime.now().isoformat()
+    timestamp = datetime.now(timezone.utc).isoformat()
     print(f"\n{'='*60}")
     print(f"  🚀 Chai Yo Pass 社群監控 - 資料收集")
     print(f"  📅 時間: {timestamp}")
@@ -638,7 +638,7 @@ def run_collection(trend_only=False, social_only=False):
 
     record = {
         "timestamp": timestamp,
-        "date": datetime.now().strftime("%Y-%m-%d"),
+        "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "keywords": config.KEYWORDS,
         "platforms": {},
     }
@@ -713,7 +713,7 @@ def run_collection(trend_only=False, social_only=False):
 def generate_dashboard_data(history):
     """產生儀表板所需的 JSON 資料"""
     dashboard_data = {
-        "last_updated": datetime.now().isoformat(),
+        "last_updated": datetime.now(timezone.utc).isoformat(),
         "keywords": config.KEYWORDS,
         "records": history["records"][-90:],  # 保留最近 90 天
     }
