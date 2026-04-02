@@ -450,178 +450,190 @@ def collect_pantip():
 
 
 # ══════════════════════════════════════════════
-#  3. Apify 通用收集器（TikTok / IG / 小紅書）
+#  3. 免費社群收集器（TikTok / IG / 小紅書）
+#     透過 Google 搜尋 + 直接網頁爬蟲，無需 API Key
 # ══════════════════════════════════════════════
-def collect_via_apify(platform, actor_id, build_input_fn):
-    """
-    透過 Apify 平台收集社群數據
-    需要先在 https://apify.com 註冊並取得 API Token
-    """
-    print(f"  🔍 透過 Apify 收集 {platform} 數據...")
 
-    api_token = config.APIFY.get("api_token", "")
-    if not api_token:
-        print(f"    ⚠️  Apify API Token 未設定，跳過 {platform}")
-        return {
-            "status": "skipped",
-            "message": "請在 config.py 填入 Apify API Token",
-        }
+def _google_search_social(keyword, site_domain, platform_name):
+    """透過 Google 搜尋特定平台的相關貼文（免費）"""
+    import requests
+    from bs4 import BeautifulSoup
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9,th;q=0.8",
+    }
+
+    posts = []
+    query = f"site:{site_domain} {keyword}"
+    search_url = f"https://www.google.com/search?q={urllib.parse.quote(query)}&num=20&hl=th"
 
     try:
-        import requests
-
-        results = {}
-
-        for kw in config.KEYWORDS:
-            actor_input = build_input_fn(kw)
-
-            # 啟動 Apify Actor（API 使用 ~ 分隔 user/actor）
-            api_actor_id = actor_id.replace("/", "~")
-            run_url = f"https://api.apify.com/v2/acts/{api_actor_id}/runs"
-            headers = {"Authorization": f"Bearer {api_token}"}
-
-            resp = requests.post(
-                run_url,
-                json=actor_input,
-                headers=headers,
-                timeout=30,
-            )
-
-            if resp.status_code not in (200, 201):
-                results[kw] = {"error": f"API 錯誤: {resp.status_code}"}
-                continue
-
-            run_data = resp.json().get("data", {})
-            run_id = run_data.get("id")
-
-            if not run_id:
-                results[kw] = {"error": "無法取得 run ID"}
-                continue
-
-            # 等待完成（最多 120 秒）
-            print(f"    ⏳ 等待 {platform} 爬蟲完成 (關鍵字: {kw})...")
-            for _ in range(24):
-                time.sleep(5)
-                status_resp = requests.get(
-                    f"https://api.apify.com/v2/actor-runs/{run_id}",
-                    headers=headers,
-                    timeout=15,
-                )
-                status = status_resp.json().get("data", {}).get("status")
-                if status == "SUCCEEDED":
-                    break
-                elif status in ("FAILED", "ABORTED", "TIMED-OUT"):
-                    results[kw] = {"error": f"爬蟲狀態: {status}"}
-                    break
-            else:
-                results[kw] = {"error": "逎時"}
-                continue
-
-            if "error" in results.get(kw, {}):
-                continue
-
-            # 取得結果
-            dataset_id = status_resp.json().get("data", {}).get("defaultDatasetId")
-            if dataset_id:
-                items_resp = requests.get(
-                    f"https://api.apify.com/v2/datasets/{dataset_id}/items?limit=50",
-                    headers=headers,
-                    timeout=15,
-                )
-                items = items_resp.json() if items_resp.status_code == 200 else []
-
-                results[kw] = {
-                    "total_results": len(items),
-                    "items": _summarize_social_items(items, platform),
-                }
-
-        print(f"    ✅ {platform} 收集完成")
-        return {"status": "success", "data": results}
-
+        resp = requests.get(search_url, headers=headers, timeout=15)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for a_tag in soup.select("a[href]"):
+                href = a_tag.get("href", "")
+                if site_domain in href and href.startswith("http"):
+                    title = a_tag.get_text(strip=True)
+                    if title and len(title) > 5 and title not in [p.get("text") for p in posts]:
+                        posts.append({
+                            "author": "unknown",
+                            "text": title[:200],
+                            "likes": 0,
+                            "comments": 0,
+                            "url": href,
+                            "date": "",
+                        })
+                        if len(posts) >= 15:
+                            break
     except Exception as e:
-        print(f"    ❌ {platform} 錯誤: {e}")
-        return {"status": "error", "message": str(e)}
+        print(f"    ⚠️  Google 搜尋 {platform_name} 失敗: {e}")
+
+    return posts
 
 
-def _summarize_social_items(items, platform):
-    """整理社群貼文摘要"""
-    summaries = []
-    total_likes = 0
-    total_comments = 0
-    total_shares = 0
-    kol_mentions = []
+def collect_tiktok_free():
+    """免費收集 TikTok 數據（直接爬蟲 + Google 搜尋）"""
+    print("  🎵 收集 TikTok 數據（免費模式）...")
+    import requests
 
-    for item in items[:50]:
-        # 不同平台欄位名稱不同
-        likes = item.get("diggCount") or item.get("likesCount") or item.get("likes") or 0
-        comments = item.get("commentCount") or item.get("commentsCount") or item.get("comments") or 0
-        shares = item.get("shareCount") or item.get("sharesCount") or item.get("shares") or 0
-        author = item.get("authorMeta", {}).get("name") or item.get("ownerUsername") or item.get("author") or "unknown"
-        followers = (
-            item.get("authorMeta", {}).get("fans")
-            or item.get("ownerFollowerCount")
-            or item.get("followers")
-            or 0
-        )
-
-        total_likes += int(likes) if likes else 0
-        total_comments += int(comments) if comments else 0
-        total_shares += int(shares) if shares else 0
-
-        # KOL 偵測（粉絲數 > 10000）
-        if followers and int(followers) > 10000:
-            kol_mentions.append({
-                "username": author,
-                "followers": int(followers),
-                "platform": platform,
-                "likes": int(likes) if likes else 0,
-            })
-
-        summaries.append({
-            "author": author,
-            "text": (item.get("text") or item.get("caption") or item.get("desc") or "")[:200],
-            "likes": int(likes) if likes else 0,
-            "comments": int(comments) if comments else 0,
-            "url": item.get("webVideoUrl") or item.get("url") or "",
-            "date": item.get("createTime") or item.get("timestamp") or "",
-        })
-
-    return {
-        "posts": summaries[:10],
-        "stats": {
-            "total_posts": len(items),
-            "total_likes": total_likes,
-            "total_comments": total_comments,
-            "total_shares": total_shares,
-            "avg_engagement": round(
-                (total_likes + total_comments + total_shares) / max(len(items), 1), 1
-            ),
-        },
-        "kol_mentions": sorted(kol_mentions, key=lambda x: x["followers"], reverse=True),
+    results = {}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Referer": "https://www.tiktok.com/",
     }
 
+    for kw in config.KEYWORDS:
+        posts = []
 
-# ── Apify 各平台 Input 建構函式 ──
+        # 方法 1: TikTok 網頁搜尋 API
+        try:
+            search_url = f"https://www.tiktok.com/api/search/general/full/?keyword={urllib.parse.quote(kw)}&offset=0&search_id=0"
+            resp = requests.get(search_url, headers=headers, timeout=15)
+            if resp.status_code == 200:
+                try:
+                    data = resp.json()
+                    for item in (data.get("data", []) or [])[:20]:
+                        video = item.get("item", {})
+                        if video:
+                            author = video.get("author", {}).get("uniqueId", "unknown")
+                            fans = video.get("author", {}).get("followerCount", 0)
+                            posts.append({
+                                "author": author,
+                                "text": (video.get("desc") or "")[:200],
+                                "likes": int(video.get("stats", {}).get("diggCount", 0)),
+                                "comments": int(video.get("stats", {}).get("commentCount", 0)),
+                                "shares": int(video.get("stats", {}).get("shareCount", 0)),
+                                "url": f"https://www.tiktok.com/@{author}/video/{video.get('id', '')}",
+                                "date": video.get("createTime", ""),
+                                "followers": int(fans) if fans else 0,
+                            })
+                except (ValueError, KeyError):
+                    pass
+        except Exception as e:
+            print(f"    ⚠️  TikTok API 嘗試失敗: {e}")
 
-def _tiktok_input(keyword):
-    return {
-        "searchQueries": [keyword],
-        "resultsPerPage": 30,
-        "shouldDownloadVideos": False,
-    }
+        # 方法 2: Google 搜尋備用
+        if not posts:
+            posts = _google_search_social(kw, "tiktok.com", "TikTok")
 
-def _instagram_input(keyword):
-    return {
-        "search": keyword,
-        "searchType": "hashtag",
-        "resultsLimit": 30,
-    }
+        total_likes = sum(p.get("likes", 0) for p in posts)
+        total_comments = sum(p.get("comments", 0) for p in posts)
+        total_shares = sum(p.get("shares", 0) for p in posts)
+        kol_list = [
+            {"username": p["author"], "followers": p.get("followers", 0), "platform": "TikTok", "likes": p.get("likes", 0)}
+            for p in posts if p.get("followers", 0) > 10000
+        ]
 
-def _xiaohongshu_input(keyword):
-    return {
-        "searchKeyword": keyword,
-        "maxItems": 30,
-    }
+        results[kw] = {
+            "total_results": len(posts),
+            "items": {
+                "posts": posts[:10],
+                "stats": {
+                    "total_posts": len(posts),
+                    "total_likes": total_likes,
+                    "total_comments": total_comments,
+                    "total_shares": total_shares,
+                    "avg_engagement": round((total_likes + total_comments + total_shares) / max(len(posts), 1), 1),
+                },
+                "kol_mentions": sorted(kol_list, key=lambda x: x["followers"], reverse=True),
+            },
+        }
+        time.sleep(2)
+
+    total = sum(r.get("total_results", 0) for r in results.values())
+    print(f"    ✅ TikTok 收集完成，共 {total} 筆")
+    return {"status": "success", "data": results}
+
+
+def collect_instagram_free():
+    """免費收集 Instagram 數據（Google 搜尋）"""
+    print("  📷 收集 Instagram 數據（免費模式）...")
+
+    results = {}
+    for kw in config.KEYWORDS:
+        posts = _google_search_social(kw, "instagram.com", "Instagram")
+
+        total_likes = sum(p.get("likes", 0) for p in posts)
+        total_comments = sum(p.get("comments", 0) for p in posts)
+
+        results[kw] = {
+            "total_results": len(posts),
+            "items": {
+                "posts": posts[:10],
+                "stats": {
+                    "total_posts": len(posts),
+                    "total_likes": total_likes,
+                    "total_comments": total_comments,
+                    "total_shares": 0,
+                    "avg_engagement": round((total_likes + total_comments) / max(len(posts), 1), 1),
+                },
+                "kol_mentions": [],
+            },
+        }
+        time.sleep(2)
+
+    total = sum(r.get("total_results", 0) for r in results.values())
+    print(f"    ✅ Instagram 收集完成，共 {total} 筆")
+    return {"status": "success", "data": results}
+
+
+def collect_xiaohongshu_free():
+    """免費收集小紅書數據（透過 Google 搜尋）"""
+    print("  📕 收集小紅書數據（免費模式）...")
+
+    results = {}
+    for kw in config.KEYWORDS:
+        posts = _google_search_social(kw, "xiaohongshu.com", "小紅書")
+        posts += _google_search_social(kw, "xhslink.com", "小紅書")
+
+        results[kw] = {
+            "total_results": len(posts),
+            "items": {
+                "posts": posts[:10],
+                "stats": {
+                    "total_posts": len(posts),
+                    "total_likes": 0,
+                    "total_comments": 0,
+                    "total_shares": 0,
+                    "avg_engagement": 0,
+                },
+                "kol_mentions": [],
+            },
+        }
+        time.sleep(2)
+
+    total = sum(r.get("total_results", 0) for r in results.values())
+    print(f"    ✅ 小紅書收集完成，共 {total} 筆")
+    return {"status": "success", "data": results}
+
+
+
 
 
 # ══════════════════════════════════════════════
@@ -651,34 +663,17 @@ def run_collection(trend_only=False, social_only=False):
     if not trend_only:
         record["platforms"]["pantip"] = collect_pantip()
 
-    # 3. TikTok（需 Apify）
+    # 3. TikTok（免費爬蟲）
     if not trend_only and "tiktok" in config.PLATFORMS:
-        record["platforms"]["tiktok"] = collect_via_apify(
-            "TikTok",
-            config.APIFY["tiktok_actor"],
-            _tiktok_input,
-        )
+        record["platforms"]["tiktok"] = collect_tiktok_free()
 
-    # 4. Instagram（需 Apify）
+    # 4. Instagram（免費爬蟲）
     if not trend_only and "instagram" in config.PLATFORMS:
-        record["platforms"]["instagram"] = collect_via_apify(
-            "Instagram",
-            config.APIFY["instagram_actor"],
-            _instagram_input,
-        )
+        record["platforms"]["instagram"] = collect_instagram_free()
 
-    # 5. 小紅書（需 Apify）— 暫時停用，無可用 Actor
+    # 5. 小紅書（免費 Google 搜尋）
     if not trend_only and "xiaohongshu" in config.PLATFORMS:
-        xhs_actor = config.APIFY.get("xiaohongshu_actor", "")
-        if xhs_actor:
-            record["platforms"]["xiaohongshu"] = collect_via_apify(
-                "小紅書",
-                xhs_actor,
-                _xiaohongshu_input,
-            )
-        else:
-            print("  ⚠️  小紅書 Actor 未設定，跳過")
-            record["platforms"]["xiaohongshu"] = {"status": "skipped", "message": "無可用 Apify Actor"}
+        record["platforms"]["xiaohongshu"] = collect_xiaohongshu_free()
 
     # 彙整 KOL 資訊
     all_kols = []
