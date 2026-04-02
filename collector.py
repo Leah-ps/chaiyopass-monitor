@@ -454,43 +454,31 @@ def collect_pantip():
 #     透過 Google 搜尋 + 直接網頁爬蟲，無需 API Key
 # ══════════════════════════════════════════════
 
-def _google_search_social(keyword, site_domain, platform_name):
-    """透過 Google 搜尋特定平台的相關貼文（免費）"""
-    import requests
-    from bs4 import BeautifulSoup
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                      "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9,th;q=0.8",
-    }
+def _ddg_search_social(keyword, site_domain, platform_name, max_results=20):
+    """透過 DuckDuckGo 搜尋特定平台的相關貼文（免費，不會被封鎖）"""
+    from duckduckgo_search import DDGS
 
     posts = []
     query = f"site:{site_domain} {keyword}"
-    search_url = f"https://www.google.com/search?q={urllib.parse.quote(query)}&num=20&hl=th"
 
     try:
-        resp = requests.get(search_url, headers=headers, timeout=15)
-        if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            for a_tag in soup.select("a[href]"):
-                href = a_tag.get("href", "")
-                if site_domain in href and href.startswith("http"):
-                    title = a_tag.get_text(strip=True)
-                    if title and len(title) > 5 and title not in [p.get("text") for p in posts]:
-                        posts.append({
-                            "author": "unknown",
-                            "text": title[:200],
-                            "likes": 0,
-                            "comments": 0,
-                            "url": href,
-                            "date": "",
-                        })
-                        if len(posts) >= 15:
-                            break
+        with DDGS() as ddgs:
+            results = list(ddgs.text(query, region="th-th", max_results=max_results))
+            for r in results:
+                href = r.get("href", "")
+                title = r.get("title", "")
+                body = r.get("body", "")
+                if site_domain in href:
+                    posts.append({
+                        "author": "unknown",
+                        "text": (title + " — " + body)[:200] if body else title[:200],
+                        "likes": 0,
+                        "comments": 0,
+                        "url": href,
+                        "date": "",
+                    })
     except Exception as e:
-        print(f"    ⚠️  Google 搜尋 {platform_name} 失敗: {e}")
+        print(f"    ⚠️  DuckDuckGo 搜尋 {platform_name} 失敗: {e}")
 
     return posts
 
@@ -538,9 +526,9 @@ def collect_tiktok_free():
         except Exception as e:
             print(f"    ⚠️  TikTok API 嘗試失敗: {e}")
 
-        # 方法 2: Google 搜尋備用
+        # 方法 2: DuckDuckGo 搜尋備用
         if not posts:
-            posts = _google_search_social(kw, "tiktok.com", "TikTok")
+            posts = _ddg_search_social(kw, "tiktok.com", "TikTok")
 
         total_likes = sum(p.get("likes", 0) for p in posts)
         total_comments = sum(p.get("comments", 0) for p in posts)
@@ -572,12 +560,12 @@ def collect_tiktok_free():
 
 
 def collect_instagram_free():
-    """免費收集 Instagram 數據（Google 搜尋）"""
+    """免費收集 Instagram 數據（DuckDuckGo 搜尋）"""
     print("  📷 收集 Instagram 數據（免費模式）...")
 
     results = {}
     for kw in config.KEYWORDS:
-        posts = _google_search_social(kw, "instagram.com", "Instagram")
+        posts = _ddg_search_social(kw, "instagram.com", "Instagram")
 
         total_likes = sum(p.get("likes", 0) for p in posts)
         total_comments = sum(p.get("comments", 0) for p in posts)
@@ -609,8 +597,8 @@ def collect_xiaohongshu_free():
 
     results = {}
     for kw in config.KEYWORDS:
-        posts = _google_search_social(kw, "xiaohongshu.com", "小紅書")
-        posts += _google_search_social(kw, "xhslink.com", "小紅書")
+        posts = _ddg_search_social(kw, "xiaohongshu.com", "小紅書")
+        posts += _ddg_search_social(kw, "xhslink.com", "小紅書")
 
         results[kw] = {
             "total_results": len(posts),
