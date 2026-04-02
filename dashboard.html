@@ -481,7 +481,7 @@ function selectKeyword(kw) {
 
 async function loadData() {
   try {
-    const resp = await fetch(DATA_FILE);
+    const resp = await fetch(DATA_FILE + '?t=' + Date.now());
     if (!resp.ok) throw new Error('No data file found');
     const data = await resp.json();
     currentData = data;
@@ -499,7 +499,7 @@ function renderDashboard(data) {
   // Update timestamp
   const dt = new Date(data.last_updated);
   document.getElementById('lastUpdated').textContent =
-    `最後更新: ${dt.toLocaleDateString('zh-TW')} ${dt.toLocaleTimeString('zh-TW')}`;
+    `最後更新: ${dt.toLocaleString('zh-TW',{timeZone:'Asia/Bangkok'})}`;
 
   // ── Helper: check if keyword matches filter ──
   const kw = selectedKeyword;
@@ -546,8 +546,8 @@ function renderDashboard(data) {
   );
   kolCount = filteredKols.length;
 
-  document.getElementById('kpiPosts').textContent = totalPosts.toLocaleString('zh-TW', {timeZone: 'Asia/Bangkok'});
-  document.getElementById('kpiEngagement').textContent = totalEng.toLocaleString('zh-TW', {timeZone: 'Asia/Bangkok'});
+  document.getElementById('kpiPosts').textContent = totalPosts.toLocaleString();
+  document.getElementById('kpiEngagement').textContent = totalEng.toLocaleString();
   document.getElementById('kpiKol').textContent = kolCount;
   document.getElementById('kpiPlatforms').textContent =
     Object.keys(latest.platforms || {}).length;
@@ -732,8 +732,8 @@ function renderKolTable(kols) {
     <tr>
       <td><strong>@${k.username}</strong></td>
       <td><span class="badge badge-${k.platform === 'TikTok' ? 'tiktok' : k.platform === 'Instagram' ? 'ig' : 'xhs'}">${k.platform}</span></td>
-      <td>${(k.followers || 0).toLocaleString('zh-TW', {timeZone: 'Asia/Bangkok'})}</td>
-      <td>${(k.likes || 0).toLocaleString('zh-TW', {timeZone: 'Asia/Bangkok'})} ❤️</td>
+      <td>${(k.followers || 0).toLocaleString()}</td>
+      <td>${(k.likes || 0).toLocaleString()} ❤️</td>
     </tr>
   `).join('');
 }
@@ -776,7 +776,7 @@ function renderPostsTable(platforms, matchKw) {
       <td><span class="badge badge-${badgeMap[p.platform] || 'google'}">${nameMap[p.platform] || p.platform}</span></td>
       <td>${p.author || p.title?.substring(0, 20) || '--'}</td>
       <td>${linked}</td>
-      <td>${((p.likes || 0) + (p.comments || 0)).toLocaleString('zh-TW', {timeZone: 'Asia/Bangkok'})}</td>
+      <td>${((p.likes || 0) + (p.comments || 0)).toLocaleString()}</td>
     </tr>`;
   }).join('');
 }
