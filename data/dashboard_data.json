@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-02T06:42:10.137724",
+  "last_updated": "2026-04-02T07:54:26.951717+00:00",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -20825,6 +20825,516 @@
                     "views": 0
                   }
                 ]
+              }
+            }
+          }
+        },
+        "tiktok": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "error": "API 錯誤: 402"
+            },
+            "ไชโยพาส": {
+              "error": "API 錯誤: 402"
+            },
+            "SAT": {
+              "error": "API 錯誤: 402"
+            },
+            "Sports Authority of Thailand": {
+              "error": "API 錯誤: 402"
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "error": "API 錯誤: 402"
+            }
+          }
+        },
+        "instagram": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "ไชโยพาส": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "SAT": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "Sports Authority of Thailand": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "total_results": 1,
+              "items": {
+                "posts": [
+                  {
+                    "author": "unknown",
+                    "text": "",
+                    "likes": 0,
+                    "comments": 0,
+                    "url": "",
+                    "date": ""
+                  }
+                ],
+                "stats": {
+                  "total_posts": 1,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0,
+                  "avg_engagement": 0.0
+                },
+                "kol_mentions": []
+              }
+            }
+          }
+        },
+        "xiaohongshu": {
+          "status": "skipped",
+          "message": "無可用 Apify Actor"
+        }
+      },
+      "kol_summary": []
+    },
+    {
+      "timestamp": "2026-04-02T07:52:31.670601+00:00",
+      "date": "2026-04-02",
+      "keywords": [
+        "Chai Yo Pass",
+        "ไชโยพาส",
+        "SAT",
+        "Sports Authority of Thailand",
+        "การกีฬาแห่งประเทศไทย"
+      ],
+      "platforms": {
+        "google_trends": {
+          "status": "success",
+          "data": {
+            "การกีฬาแห่งประเทศไทย": {
+              "trend_data": {
+                "2026-01-02": 0,
+                "2026-01-03": 0,
+                "2026-01-04": 0,
+                "2026-01-05": 66,
+                "2026-01-06": 0,
+                "2026-01-07": 0,
+                "2026-01-08": 0,
+                "2026-01-09": 0,
+                "2026-01-10": 0,
+                "2026-01-11": 0,
+                "2026-01-12": 0,
+                "2026-01-13": 0,
+                "2026-01-14": 0,
+                "2026-01-15": 0,
+                "2026-01-16": 0,
+                "2026-01-17": 0,
+                "2026-01-18": 0,
+                "2026-01-19": 0,
+                "2026-01-20": 0,
+                "2026-01-21": 0,
+                "2026-01-22": 0,
+                "2026-01-23": 0,
+                "2026-01-24": 0,
+                "2026-01-25": 0,
+                "2026-01-26": 0,
+                "2026-01-27": 0,
+                "2026-01-28": 0,
+                "2026-01-29": 0,
+                "2026-01-30": 0,
+                "2026-01-31": 0,
+                "2026-02-01": 0,
+                "2026-02-02": 0,
+                "2026-02-03": 0,
+                "2026-02-04": 0,
+                "2026-02-05": 0,
+                "2026-02-06": 0,
+                "2026-02-07": 0,
+                "2026-02-08": 0,
+                "2026-02-09": 0,
+                "2026-02-10": 0,
+                "2026-02-11": 0,
+                "2026-02-12": 69,
+                "2026-02-13": 0,
+                "2026-02-14": 0,
+                "2026-02-15": 100,
+                "2026-02-16": 0,
+                "2026-02-17": 0,
+                "2026-02-18": 0,
+                "2026-02-19": 0,
+                "2026-02-20": 0,
+                "2026-02-21": 0,
+                "2026-02-22": 0,
+                "2026-02-23": 0,
+                "2026-02-24": 0,
+                "2026-02-25": 0,
+                "2026-02-26": 0,
+                "2026-02-27": 76,
+                "2026-02-28": 0,
+                "2026-03-01": 0,
+                "2026-03-02": 0,
+                "2026-03-03": 0,
+                "2026-03-04": 0,
+                "2026-03-05": 0,
+                "2026-03-06": 78,
+                "2026-03-07": 0,
+                "2026-03-08": 0,
+                "2026-03-09": 0,
+                "2026-03-10": 0,
+                "2026-03-11": 0,
+                "2026-03-12": 0,
+                "2026-03-13": 0,
+                "2026-03-14": 0,
+                "2026-03-15": 0,
+                "2026-03-16": 0,
+                "2026-03-17": 0,
+                "2026-03-18": 0,
+                "2026-03-19": 25,
+                "2026-03-20": 28,
+                "2026-03-21": 14,
+                "2026-03-22": 10,
+                "2026-03-23": 27,
+                "2026-03-24": 26,
+                "2026-03-25": 30,
+                "2026-03-26": 28,
+                "2026-03-27": 26,
+                "2026-03-28": 15,
+                "2026-03-29": 15,
+                "2026-03-30": 22,
+                "2026-03-31": 26,
+                "2026-04-01": 35,
+                "2026-04-02": 41
+              },
+              "current_score": 41,
+              "avg_score": 8.3,
+              "max_score": 100,
+              "trend_direction": "rising"
+            }
+          },
+          "note": "via direct HTTP"
+        },
+        "pantip": {
+          "status": "success",
+          "data": {
+            "Chai Yo Pass": {
+              "post_count": 0,
+              "posts": [],
+              "search_url": "https://pantip.com/search?q=Chai Yo Pass",
+              "items": {
+                "stats": {
+                  "total_posts": 0,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": []
+              }
+            },
+            "ไชโยพาส": {
+              "post_count": 5,
+              "posts": [
+                {
+                  "title": "💫🕛💫🚀 แดนศิวิไลซ์ ( หลงกาล ภาค 2 ) ตอนที่ 61 🚀💫🕛💫",
+                  "url": "https://pantip.com/topic/40724860",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "สงสัยเรื่องสะสมไมล์ของ SkyTeam",
+                  "url": "https://pantip.com/topic/36394502",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "คห.3-4",
+                  "url": "https://pantip.com/topic/36394502/comment3-4",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "[สัพเพเหระ]..กระทู้คุยเพลินๆ ยามว่างจากการงาน..กับฮั่น",
+                  "url": "https://pantip.com/topic/34641555",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "คห.130-1",
+                  "url": "https://pantip.com/topic/34641555/comment130-1",
+                  "comments": 0,
+                  "views": 0
+                }
+              ],
+              "search_url": "https://pantip.com/search?q=ไชโยพาส",
+              "items": {
+                "stats": {
+                  "total_posts": 5,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": [
+                  {
+                    "title": "💫🕛💫🚀 แดนศิวิไลซ์ ( หลงกาล ภาค 2 ) ตอนที่ 61 🚀💫🕛💫",
+                    "url": "https://pantip.com/topic/40724860",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "สงสัยเรื่องสะสมไมล์ของ SkyTeam",
+                    "url": "https://pantip.com/topic/36394502",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "คห.3-4",
+                    "url": "https://pantip.com/topic/36394502/comment3-4",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "[สัพเพเหระ]..กระทู้คุยเพลินๆ ยามว่างจากการงาน..กับฮั่น",
+                    "url": "https://pantip.com/topic/34641555",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "คห.130-1",
+                    "url": "https://pantip.com/topic/34641555/comment130-1",
+                    "comments": 0,
+                    "views": 0
+                  }
+                ]
+              }
+            },
+            "SAT": {
+              "post_count": 9,
+              "posts": [
+                {
+                  "title": "สนามสอบsat",
+                  "url": "https://pantip.com/topic/43956676",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                  "url": "https://pantip.com/topic/43879422",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "ที่เรียนพิเศษSAT(math , verbal) , IELTS , ACT",
+                  "url": "https://pantip.com/topic/43792718",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44032127",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44023269",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat14 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44014837",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/43989455",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/44006545",
+                  "comments": 0,
+                  "views": 0
+                },
+                {
+                  "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                  "url": "https://pantip.com/topic/43997834",
+                  "comments": 0,
+                  "views": 0
+                }
+              ],
+              "search_url": "https://pantip.com/search?q=SAT",
+              "items": {
+                "stats": {
+                  "total_posts": 9,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": [
+                  {
+                    "title": "สนามสอบsat",
+                    "url": "https://pantip.com/topic/43956676",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                    "url": "https://pantip.com/topic/43879422",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "ที่เรียนพิเศษSAT(math , verbal) , IELTS , ACT",
+                    "url": "https://pantip.com/topic/43792718",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44032127",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44023269",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat14 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44014837",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/43989455",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/44006545",
+                    "comments": 0,
+                    "views": 0
+                  },
+                  {
+                    "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                    "url": "https://pantip.com/topic/43997834",
+                    "comments": 0,
+                    "views": 0
+                  }
+                ]
+              }
+            },
+            "Sports Authority of Thailand": {
+              "post_count": 0,
+              "posts": [],
+              "search_url": "https://pantip.com/search?q=Sports Authority of Thailand",
+              "items": {
+                "stats": {
+                  "total_posts": 0,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": []
+              }
+            },
+            "การกีฬาแห่งประเทศไทย": {
+              "post_count": 0,
+              "posts": [],
+              "search_url": "https://pantip.com/search?q=การกีฬาแห่งประเทศไทย",
+              "items": {
+                "stats": {
+                  "total_posts": 0,
+                  "total_likes": 0,
+                  "total_comments": 0,
+                  "total_shares": 0
+                },
+                "posts": []
               }
             }
           }
