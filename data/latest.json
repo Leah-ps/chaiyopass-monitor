@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-12T05:34:10.295032+00:00",
-  "date": "2026-04-12",
+  "timestamp": "2026-04-13T05:59:56.047425+00:00",
+  "date": "2026-04-13",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -109,7 +109,8 @@
           "current_score": 0,
           "avg_score": 1.1,
           "max_score": 100,
-          "trend_direction": "rising"
+          "trend_direction": "rising",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "SAT": {
           "trend_data": {
@@ -208,7 +209,8 @@
           "current_score": 27,
           "avg_score": 48.8,
           "max_score": 100,
-          "trend_direction": "declining"
+          "trend_direction": "declining",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "Sports Authority of Thailand": {
           "trend_data": {
@@ -307,7 +309,8 @@
           "current_score": 0,
           "avg_score": 1.1,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "การกีฬาแห่งประเทศไทย": {
           "trend_data": {
@@ -406,10 +409,11 @@
           "current_score": 0,
           "avg_score": 8.0,
           "max_score": 100,
-          "trend_direction": "rising"
+          "trend_direction": "rising",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
@@ -556,8 +560,8 @@
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44006545",
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/43989455",
               "comments": 0,
               "views": 0
             }
@@ -620,8 +624,8 @@
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat7 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44006545",
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Feb 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/43989455",
                 "comments": 0,
                 "views": 0
               }
