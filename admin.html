@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chai Yo Pass - 社群監控儀表板</title>
+<title>Chai Yo Pass - ADMIN 儀表板</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
@@ -316,8 +316,14 @@
 <body>
 
 <div class="header">
-  <h1><span class="logo">📡</span> Chai Yo Pass 社群監控儀表板</h1>
+  <h1><span class="logo">📡</span> Chai Yo Pass 監控 <span style="font-size:13px;padding:3px 10px;background:rgba(243,156,18,0.15);color:#f39c12;border-radius:6px;vertical-align:middle;margin-left:8px;">🔒 ADMIN</span></h1>
   <div style="display:flex;align-items:center;gap:16px;">
+    <button class="collect-btn" id="collectBtn" onclick="triggerCollect()">
+      <span class="btn-icon">🔄</span>
+      <span class="spinner"></span>
+      立即收集數據
+    </button>
+    <button onclick="setupToken()" title="設定 GitHub Token（一鍵觸發）" style="background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-secondary);cursor:pointer;padding:6px 10px;font-size:16px;" id="settingsBtn">⚙️</button>
     <div class="header-meta">
       <div id="lastUpdated">載入中...</div>
       <div class="status"><span class="dot"></span> 自動監控中</div>
@@ -834,6 +840,100 @@ function showDemoData() {
       },
     },
   });
+}
+
+// ── Trigger Data Collection ──
+function setupToken() {
+  const current = localStorage.getItem('gh_pat') || '';
+  const msg = current
+    ? '已設定 Token。要更換嗎？（留空清除）\n\n目前 Token: ' + current.substring(0, 10) + '...'
+    : '請輸入 GitHub Personal Access Token\n（需要 repo 和 actions 權限）\n\n建立方式：GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate\n權限選：Actions (Read & Write)';
+  const token = prompt(msg, current);
+  if (token === null) return;
+  if (token) {
+    localStorage.setItem('gh_pat', token.trim());
+    alert('✅ Token 已儲存！現在可以一鍵觸發收集。');
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  } else {
+    localStorage.removeItem('gh_pat');
+    alert('Token 已清除。');
+    document.getElementById('settingsBtn').style.borderColor = 'var(--border)';
+  }
+}
+
+(function(){
+  var hasToken = localStorage.getItem('gh_pat');
+  if (hasToken) {
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  }
+})()
+
+async function triggerCollect() {
+  const btn = document.getElementById('collectBtn');
+  const REPO = 'Leah-ps/chaiyopass-monitor';
+  const WORKFLOW = 'daily-monitor.yml';
+  let token = localStorage.getItem('gh_pat') || '';
+  if (!token) {
+    const input = prompt('首次使用需設定 GitHub Token 才能一鍵觸發收集。\n\n建立方式：GitHub → Settings → Developer settings →\nPersonal access tokens → Fine-grained tokens\n權限選：Actions (Read & Write)\n\n請貼上 Token：');
+    if (!input) return;
+    token = input.trim();
+    localStorage.setItem('gh_pat', token);
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  }
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="btn-icon">🚀</span> 觸發收集中...';
+  try {
+    const resp = await fetch(
+      'https://api.github.com/repos/' + REPO + '/actions/workflows/' + WORKFLOW + '/dispatches',
+      { method: 'POST', headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }, body: JSON.stringify({ ref: 'main' }) }
+    );
+    if (resp.status === 204) {
+      startPollingForNewData();
+      return;
+    } else {
+      localStorage.removeItem('gh_pat');
+      document.getElementById('settingsBtn').style.borderColor = 'var(--border)';
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+      alert('Token 無效或已過期，請重新設定。');
+    }
+  } catch(e) {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+    alert('觸發失敗：' + e.message);
+  }
+}
+
+function startPollingForNewData() {
+  const btn = document.getElementById('collectBtn');
+  const oldTs = document.getElementById('lastUpdated').textContent;
+  let attempts = 0;
+  const maxAttempts = 20;
+  btn.innerHTML = '<span class="btn-icon">⏳</span><span class="spinner"></span> 等待資料更新...';
+  btn.classList.add('loading');
+  const poll = setInterval(async function() {
+    attempts++;
+    try {
+      await loadData();
+      const newTs = document.getElementById('lastUpdated').textContent;
+      if (newTs !== oldTs) {
+        clearInterval(poll);
+        btn.classList.remove('loading');
+        btn.classList.add('success');
+        btn.innerHTML = '<span class="btn-icon">✅</span> 資料已更新';
+        setTimeout(function(){
+          btn.classList.remove('success');
+          btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+        }, 5000);
+        return;
+      }
+    } catch(e) {}
+    if (attempts >= maxAttempts) {
+      clearInterval(poll);
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+    }
+  }, 30000);
 }
 
 // ── Auto Refresh ──
