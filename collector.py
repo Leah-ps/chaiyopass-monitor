@@ -450,91 +450,93 @@ def collect_pantip():
 
 
 # ══════════════════════════════════════════════
-#  3. 免費社群收集器（TikTok / IG / 小紅書）
-#     透過 Google 搜尋 + 直接網頁爬蟲，無需 API Key
+#  3. YouTube 收集器（YouTube Data API v3）
+#     需環境變數 YOUTUBE_API_KEY
 # ══════════════════════════════════════════════
 
-def _ddg_search_social(keyword, site_domain, platform_name, max_results=20):
-    """透過 DuckDuckGo 搜尋特定平台的相關貼文（免費，不會被封鎖）"""
-    from duckduckgo_search import DDGS
+def collect_youtube():
+    """透過 YouTube Data API v3 收集相關影片（免費，10,000 units/day）
 
-    posts = []
-    query = f"site:{site_domain} {keyword}"
-
-    try:
-        with DDGS() as ddgs:
-            results = list(ddgs.text(query, region="th-th", max_results=max_results))
-            for r in results:
-                href = r.get("href", "")
-                title = r.get("title", "")
-                body = r.get("body", "")
-                if site_domain in href:
-                    posts.append({
-                        "author": "unknown",
-                        "text": (title + " — " + body)[:200] if body else title[:200],
-                        "likes": 0,
-                        "comments": 0,
-                        "url": href,
-                        "date": "",
-                    })
-    except Exception as e:
-        print(f"    ⚠️  DuckDuckGo 搜尋 {platform_name} 失敗: {e}")
-
-    return posts
-
-
-def collect_tiktok_free():
-    """免費收集 TikTok 數據（直接爬蟲 + Google 搜尋）"""
-    print("  🎵 收集 TikTok 數據（免費模式）...")
+    環境變數: YOUTUBE_API_KEY（需在 Google Cloud Console 申請並啟用 YouTube Data API v3）
+    """
+    print("  📺 收集 YouTube 數據...")
     import requests
 
-    results = {}
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                      "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/plain, */*",
-        "Referer": "https://www.tiktok.com/",
-    }
+    api_key = os.environ.get("YOUTUBE_API_KEY", "").strip()
+    if not api_key:
+        print("    ⚠️  YOUTUBE_API_KEY 未設定，略過 YouTube 收集")
+        return {"status": "skipped", "message": "YOUTUBE_API_KEY 未設定"}
 
+    results = {}
     for kw in config.KEYWORDS:
         posts = []
-
-        # 方法 1: TikTok 網頁搜尋 API
         try:
-            search_url = f"https://www.tiktok.com/api/search/general/full/?keyword={urllib.parse.quote(kw)}&offset=0&search_id=0"
-            resp = requests.get(search_url, headers=headers, timeout=15)
-            if resp.status_code == 200:
-                try:
-                    data = resp.json()
-                    for item in (data.get("data", []) or [])[:20]:
-                        video = item.get("item", {})
-                        if video:
-                            author = video.get("author", {}).get("uniqueId", "unknown")
-                            fans = video.get("author", {}).get("followerCount", 0)
-                            posts.append({
-                                "author": author,
-                                "text": (video.get("desc") or "")[:200],
-                                "likes": int(video.get("stats", {}).get("diggCount", 0)),
-                                "comments": int(video.get("stats", {}).get("commentCount", 0)),
-                                "shares": int(video.get("stats", {}).get("shareCount", 0)),
-                                "url": f"https://www.tiktok.com/@{author}/video/{video.get('id', '')}",
-                                "date": video.get("createTime", ""),
-                                "followers": int(fans) if fans else 0,
-                            })
-                except (ValueError, KeyError):
-                    pass
-        except Exception as e:
-            print(f"    ⚠️  TikTok API 嘗試失敗: {e}")
+            search_url = "https://www.googleapis.com/youtube/v3/search"
+            params = {
+                "part": "snippet",
+                "q": kw,
+                "type": "video",
+                "maxResults": 15,
+                "order": "relevance",
+                "regionCode": "TH",
+                "key": api_key,
+            }
+            resp = requests.get(search_url, params=params, timeout=20)
+            if resp.status_code != 200:
+                print(f"    ⚠️  YouTube API 錯誤 {resp.status_code}: {resp.text[:150]}")
+                results[kw] = {"total_results": 0, "items": {"posts": [], "stats": {"total_posts": 0, "total_likes": 0, "total_comments": 0, "total_shares": 0, "avg_engagement": 0}, "kol_mentions": []}}
+                continue
 
-        # 方法 2: DuckDuckGo 搜尋備用
-        if not posts:
-            posts = _ddg_search_social(kw, "tiktok.com", "TikTok")
+            search_data = resp.json()
+            video_ids = [it["id"]["videoId"] for it in search_data.get("items", []) if it.get("id", {}).get("videoId")]
+
+            stats_map = {}
+            channel_ids = []
+            if video_ids:
+                stats_url = "https://www.googleapis.com/youtube/v3/videos"
+                stats_params = {"part": "statistics,snippet", "id": ",".join(video_ids), "key": api_key}
+                stats_resp = requests.get(stats_url, params=stats_params, timeout=20)
+                if stats_resp.status_code == 200:
+                    for vid in stats_resp.json().get("items", []):
+                        stats_map[vid["id"]] = {"stats": vid.get("statistics", {}), "snippet": vid.get("snippet", {})}
+                        ch_id = vid.get("snippet", {}).get("channelId")
+                        if ch_id:
+                            channel_ids.append(ch_id)
+
+            sub_map = {}
+            if channel_ids:
+                ch_url = "https://www.googleapis.com/youtube/v3/channels"
+                ch_params = {"part": "statistics", "id": ",".join(list(set(channel_ids))), "key": api_key}
+                ch_resp = requests.get(ch_url, params=ch_params, timeout=20)
+                if ch_resp.status_code == 200:
+                    for ch in ch_resp.json().get("items", []):
+                        sub_map[ch["id"]] = int(ch.get("statistics", {}).get("subscriberCount", 0) or 0)
+
+            for vid_id in video_ids:
+                info = stats_map.get(vid_id, {})
+                snip = info.get("snippet", {})
+                st = info.get("stats", {})
+                ch_id = snip.get("channelId", "")
+                subs = sub_map.get(ch_id, 0)
+                posts.append({
+                    "author": snip.get("channelTitle", "unknown"),
+                    "text": (snip.get("title") or "")[:200],
+                    "likes": int(st.get("likeCount", 0) or 0),
+                    "comments": int(st.get("commentCount", 0) or 0),
+                    "views": int(st.get("viewCount", 0) or 0),
+                    "url": f"https://www.youtube.com/watch?v={vid_id}",
+                    "date": snip.get("publishedAt", ""),
+                    "followers": subs,
+                    "channel_id": ch_id,
+                })
+        except Exception as e:
+            print(f"    ⚠️  YouTube 收集 {kw} 失敗: {e}")
 
         total_likes = sum(p.get("likes", 0) for p in posts)
         total_comments = sum(p.get("comments", 0) for p in posts)
-        total_shares = sum(p.get("shares", 0) for p in posts)
+        total_views = sum(p.get("views", 0) for p in posts)
         kol_list = [
-            {"username": p["author"], "followers": p.get("followers", 0), "platform": "TikTok", "likes": p.get("likes", 0)}
+            {"username": p["author"], "followers": p.get("followers", 0), "platform": "YouTube", "likes": p.get("likes", 0)}
             for p in posts if p.get("followers", 0) > 10000
         ]
 
@@ -546,82 +548,17 @@ def collect_tiktok_free():
                     "total_posts": len(posts),
                     "total_likes": total_likes,
                     "total_comments": total_comments,
-                    "total_shares": total_shares,
-                    "avg_engagement": round((total_likes + total_comments + total_shares) / max(len(posts), 1), 1),
+                    "total_shares": total_views,
+                    "avg_engagement": round((total_likes + total_comments) / max(len(posts), 1), 1),
                 },
                 "kol_mentions": sorted(kol_list, key=lambda x: x["followers"], reverse=True),
             },
         }
-        time.sleep(2)
+        time.sleep(1)
 
     total = sum(r.get("total_results", 0) for r in results.values())
-    print(f"    ✅ TikTok 收集完成，共 {total} 筆")
+    print(f"    ✅ YouTube 收集完成，共 {total} 筆")
     return {"status": "success", "data": results}
-
-
-def collect_instagram_free():
-    """免費收集 Instagram 數據（DuckDuckGo 搜尋）"""
-    print("  📷 收集 Instagram 數據（免費模式）...")
-
-    results = {}
-    for kw in config.KEYWORDS:
-        posts = _ddg_search_social(kw, "instagram.com", "Instagram")
-
-        total_likes = sum(p.get("likes", 0) for p in posts)
-        total_comments = sum(p.get("comments", 0) for p in posts)
-
-        results[kw] = {
-            "total_results": len(posts),
-            "items": {
-                "posts": posts[:10],
-                "stats": {
-                    "total_posts": len(posts),
-                    "total_likes": total_likes,
-                    "total_comments": total_comments,
-                    "total_shares": 0,
-                    "avg_engagement": round((total_likes + total_comments) / max(len(posts), 1), 1),
-                },
-                "kol_mentions": [],
-            },
-        }
-        time.sleep(2)
-
-    total = sum(r.get("total_results", 0) for r in results.values())
-    print(f"    ✅ Instagram 收集完成，共 {total} 筆")
-    return {"status": "success", "data": results}
-
-
-def collect_xiaohongshu_free():
-    """免費收集小紅書數據（透過 Google 搜尋）"""
-    print("  📕 收集小紅書數據（免費模式）...")
-
-    results = {}
-    for kw in config.KEYWORDS:
-        posts = _ddg_search_social(kw, "xiaohongshu.com", "小紅書")
-        posts += _ddg_search_social(kw, "xhslink.com", "小紅書")
-
-        results[kw] = {
-            "total_results": len(posts),
-            "items": {
-                "posts": posts[:10],
-                "stats": {
-                    "total_posts": len(posts),
-                    "total_likes": 0,
-                    "total_comments": 0,
-                    "total_shares": 0,
-                    "avg_engagement": 0,
-                },
-                "kol_mentions": [],
-            },
-        }
-        time.sleep(2)
-
-    total = sum(r.get("total_results", 0) for r in results.values())
-    print(f"    ✅ 小紅書收集完成，共 {total} 筆")
-    return {"status": "success", "data": results}
-
-
-
 
 
 # ══════════════════════════════════════════════
@@ -651,17 +588,9 @@ def run_collection(trend_only=False, social_only=False):
     if not trend_only:
         record["platforms"]["pantip"] = collect_pantip()
 
-    # 3. TikTok（免費爬蟲）
-    if not trend_only and "tiktok" in config.PLATFORMS:
-        record["platforms"]["tiktok"] = collect_tiktok_free()
-
-    # 4. Instagram（免費爬蟲）
-    if not trend_only and "instagram" in config.PLATFORMS:
-        record["platforms"]["instagram"] = collect_instagram_free()
-
-    # 5. 小紅書（免費 Google 搜尋）
-    if not trend_only and "xiaohongshu" in config.PLATFORMS:
-        record["platforms"]["xiaohongshu"] = collect_xiaohongshu_free()
+    # 3. YouTube（免費 Data API v3, 每天 10,000 units）
+    if not trend_only:
+        record["platforms"]["youtube"] = collect_youtube()
 
     # 彙整 KOL 資訊
     all_kols = []
