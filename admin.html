@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chai Yo Pass - ADMIN 儀表板</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #0f1117;
+    --bg-card: #1a1d28;
+    --bg-card-hover: #222636;
+    --border: #2a2e3d;
+    --text-primary: #e4e6eb;
+    --text-secondary: #8b8fa3;
+    --accent-blue: #4a90d9;
+    --accent-green: #2ecc71;
+    --accent-orange: #f39c12;
+    --accent-red: #e74c3c;h
+    --accent-purple: #9b59b6;
+    --accent-teal: #1abc9c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #1a1d28 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header h1 .logo { font-size: 28px; }
+  .header-meta {
+    text-align: right;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .header-meta .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 4px 10px;
+    background: rgba(46,204,113,0.15);
+    border-radius: 12px;
+    color: var(--accent-green);
+    font-size: 12px;
+  }
+  .header-meta .status .dot {
+    width: 6px; height: 6px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ── Collect Button ── */
+  .collect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, var(--accent-blue), #357abd);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  .collect-btn:hover {
+    background: linear-gradient(135deg, #5aa0e9, var(--accent-blue));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(74,144,217,0.4);
+  }
+  .collect-btn:active { transform: translateY(0); }
+  .collect-btn.loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .collect-btn .spinner {
+    display: none;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  .collect-btn.loading .spinner { display: inline-block; }
+  .collect-btn.loading .btn-icon { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .collect-btn.success {
+    background: linear-gradient(135deg, var(--accent-green), #27ae60);
+  }
+
+  /* ── Layout ── */
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+  /* ── KPI Cards ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .kpi-card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+  .kpi-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .kpi-change {
+    font-size: 13px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .kpi-change.up { color: var(--accent-green); }
+  .kpi-change.down { color: var(--accent-red); }
+  .kpi-change.stable { color: var(--text-secondary); }
+
+  /* ── Chart Cards ── */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .chart-card.full-width { grid-column: 1 / -1; }
+  .chart-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chart-title .icon { font-size: 18px; }
+
+  /* ── Tables ── */
+  .table-container {
+    overflow-x: auto;
+    margin-top: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(42,46,61,0.5);
+    color: var(--text-primary);
+  }
+  tr:hover td { background: rgba(74,144,217,0.05); }
+
+  .badge {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .badge-youtube { background: rgba(255,0,0,0.15); color: #ff0000; }
+  .badge-pantip { background: rgba(74,144,217,0.15); color: var(--accent-blue); }
+  .badge-google { background: rgba(66,133,244,0.15); color: #4285f4; }
+
+  /* ── Platform Pills ── */
+  .platform-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill:hover, .pill.active {
+    border-color: var(--accent-blue);
+    background: rgba(74,144,217,0.1);
+  }
+  .pill .count {
+    background: var(--border);
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  /* ── Empty State ── */
+  .empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-secondary);
+  }
+  .empty-state .icon { font-size: 64px; margin-bottom: 16px; }
+  .empty-state h2 { font-size: 20px; color: var(--text-primary); margin-bottom: 8px; }
+  .empty-state p { max-width: 400px; margin: 0 auto; line-height: 1.6; }
+  .empty-state code {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #1e2130;
+    border-radius: 8px;
+    font-family: 'Fira Code', monospace;
+    color: var(--accent-green);
+  }
+
+  /* ── Keyword Chips ── */
+  .keyword-chips { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .chip {
+    padding: 6px 14px;
+    border-radius: 16px;
+    background: rgba(74,144,217,0.12);
+    color: var(--accent-blue);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1.5px solid transparent;
+    user-select: none;
+  }
+  .chip:hover { background: rgba(74,144,217,0.25); }
+  .chip.active {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 2px 8px rgba(74,144,217,0.35);
+  }
+  .chip.th { background: rgba(155,89,182,0.12); color: var(--accent-purple); }
+  .chip.th:hover { background: rgba(155,89,182,0.25); }
+  .chip.th.active {
+    background: var(--accent-purple);
+    color: #fff;
+    border-color: var(--accent-purple);
+    box-shadow: 0 2px 8px rgba(155,89,182,0.35);
+  }
+  .chip.all { background: rgba(46,204,113,0.12); color: var(--accent-green); }
+  .chip.all:hover { background: rgba(46,204,113,0.25); }
+  .chip.all.active {
+    background: var(--accent-green);
+    color: #fff;
+    border-color: var(--accent-green);
+    box-shadow: 0 2px 8px rgba(46,204,113,0.35);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 12px; }
+    .header-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span class="logo">📡</span> Chai Yo Pass 監控 <span style="font-size:13px;padding:3px 10px;background:rgba(243,156,18,0.15);color:#f39c12;border-radius:6px;vertical-align:middle;margin-left:8px;">🔒 ADMIN</span></h1>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <button class="collect-btn" id="collectBtn" onclick="triggerCollect()">
+      <span class="btn-icon">🔄</span>
+      <span class="spinner"></span>
+      立即收集數據
+    </button>
+    <button onclick="setupToken()" title="設定 GitHub Token（一鍵觸發）" style="background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-secondary);cursor:pointer;padding:6px 10px;font-size:16px;" id="settingsBtn">⚙️</button>
+    <div class="header-meta">
+      <div id="lastUpdated">載入中...</div>
+      <div class="status"><span class="dot"></span> 自動監控中</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Keyword Chips (Filter) -->
+  <div class="keyword-chips" id="keywordChips">
+    <div class="chip all active" onclick="selectKeyword('ALL')">ALL</div>
+    <div class="chip" onclick="selectKeyword('Chai Yo Pass')">Chai Yo Pass</div>
+    <div class="chip th" onclick="selectKeyword('ไชโยพาส')">ไชโยพาส</div>
+    <div class="chip" onclick="selectKeyword('SAT')">SAT</div>
+    <div class="chip" onclick="selectKeyword('Sports Authority of Thailand')">Sports Authority of Thailand</div>
+    <div class="chip th" onclick="selectKeyword('การกีฬาแห่งประเทศไทย')">การกีฬาแห่งประเทศไทย</div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid" id="kpiGrid">
+    <div class="kpi-card">
+      <div class="kpi-label">Google 搜尋熱度</div>
+      <div class="kpi-value" id="kpiTrend">--</div>
+      <div class="kpi-change stable" id="kpiTrendChange">等待資料</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">社群總討論數</div>
+      <div class="kpi-value" id="kpiPosts">--</div>
+      <div class="kpi-change stable" id="kpiPostsChange">等待資料</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">總互動量</div>
+      <div class="kpi-value" id="kpiEngagement">--</div>
+      <div class="kpi-change stable" id="kpiEngChange">等待資料</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">KOL 提及數</div>
+      <div class="kpi-value" id="kpiKol">--</div>
+      <div class="kpi-change stable" id="kpiKolChange">等待資料</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">監控平台數</div>
+      <div class="kpi-value" id="kpiPlatforms">--</div>
+      <div class="kpi-change stable">目標平台</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="chart-grid">
+    <div class="chart-card full-width">
+      <div class="chart-title"><span class="icon">📈</span> Google 搜尋趨勢</div>
+      <canvas id="trendChart" height="80"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title"><span class="icon">🔥</span> 各平台討論量</div>
+      <canvas id="platformChart" height="120"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title"><span class="icon">📊</span> 互動量分佈</div>
+      <canvas id="engagementChart" height="120"></canvas>
+    </div>
+  </div>
+
+  <!-- KOL Table -->
+  <div class="chart-card" style="margin-bottom: 24px;">
+    <div class="chart-title"><span class="icon">⭐</span> KOL / 網紅提及</div>
+    <div class="table-container">
+      <table id="kolTable">
+        <thead>
+          <tr>
+            <th>帳號名稱</th>
+            <th>平台</th>
+            <th>粉絲數</th>
+            <th>該篇互動</th>
+          </tr>
+        </thead>
+        <tbody id="kolBody">
+          <tr><td colspan="4" style="text-align:center; color:var(--text-secondary); padding:24px;">
+            執行資料收集後，KOL 數據將顯示於此
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Recent Posts -->
+  <div class="chart-card" style="margin-bottom: 24px;">
+    <div class="chart-title"><span class="icon">💬</span> 最新相關貼文</div>
+    <div class="platform-pills" id="platformFilter"></div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>平台</th>
+            <th>作者</th>
+            <th>內容摘要</th>
+            <th>互動</th>
+          </tr>
+        </thead>
+        <tbody id="postsBody">
+          <tr><td colspan="4" style="text-align:center; color:var(--text-secondary); padding:24px;">
+            執行資料收集後，貼文將顯示於此
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Related Keywords -->
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title"><span class="icon">🔍</span> 上升中的相關搜尋</div>
+      <div id="risingKeywords" style="color: var(--text-secondary); font-size: 13px;">
+        執行 Google Trends 收集後顯示
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title"><span class="icon">📋</span> 熱門相關搜尋</div>
+      <div id="topKeywords" style="color: var(--text-secondary); font-size: 13px;">
+        執行 Google Trends 收集後顯示
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  Dashboard Data Loader
+// ══════════════════════════════════════════
+
+const DATA_FILE = 'data/dashboard_data.json';
+
+let chartTrend = null;
+let chartPlatform = null;
+let chartEngagement = null;
+let currentData = null;
+let selectedKeyword = 'ALL';
+
+function selectKeyword(kw) {
+  selectedKeyword = kw;
+  // Update chip active states
+  document.querySelectorAll('#keywordChips .chip').forEach(c => {
+    c.classList.remove('active');
+    if (c.textContent.trim() === kw) c.classList.add('active');
+  });
+  // Re-render with filter
+  if (currentData) renderDashboard(currentData);
+}
+
+async function loadData() {
+  try {
+    const resp = await fetch(DATA_FILE + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('No data file found');
+    const data = await resp.json();
+    currentData = data;
+    renderDashboard(data);
+  } catch (e) {
+    console.log('No data yet - showing empty state. Run collector.py first.');
+    showDemoData();
+  }
+}
+
+function renderDashboard(data) {
+  const latest = data.records[data.records.length - 1];
+  if (!latest) return;
+
+  // Update timestamp
+  const raw = data.last_updated;
+  const ts = (raw.endsWith('Z') || /[+-]\d{2}:\d{2}$/.test(raw)) ? raw : raw + 'Z';
+      const dt = new Date(ts);
+  document.getElementById('lastUpdated').textContent =
+    `最後更新: ${dt.toLocaleString('zh-TW',{timeZone:'Asia/Bangkok'})}`;
+
+  // ── Helper: check if keyword matches filter ──
+  const kw = selectedKeyword;
+  const matchKw = (k) => kw === 'ALL' || k === kw;
+
+  // ── KPI Cards ──
+  const gt = latest.platforms?.google_trends;
+  if (gt?.status === 'success' && gt.data) {
+    let bestScore = 0, bestTrend = 'stable';
+    if (kw === 'ALL') {
+      // ALL 模式：取所有關鍵字中最高分數
+      for (const kwData of Object.values(gt.data)) {
+        const s = kwData?.current_score ?? 0;
+        if (s > bestScore) { bestScore = s; bestTrend = kwData.trend_direction ?? 'stable'; }
+      }
+    } else if (gt.data[kw]) {
+      bestScore = gt.data[kw].current_score ?? 0;
+      bestTrend = gt.data[kw].trend_direction ?? 'stable';
+    }
+    document.getElementById('kpiTrend').textContent = bestScore + '/100';
+    const changeEl = document.getElementById('kpiTrendChange');
+    changeEl.textContent = bestTrend === 'rising' ? '↑ 上升中' : bestTrend === 'declining' ? '↓ 下降中' : '→ 穩定';
+    changeEl.className = 'kpi-change ' + (bestTrend === 'rising' ? 'up' : bestTrend === 'declining' ? 'down' : 'stable');
+  }
+
+  // Count posts across platforms (filtered by keyword)
+  let totalPosts = 0, totalEng = 0, kolCount = 0;
+  for (const [pname, pdata] of Object.entries(latest.platforms || {})) {
+    if (pdata?.status === 'success' && pdata.data) {
+      for (const [kwKey, kwData] of Object.entries(pdata.data)) {
+        if (!matchKw(kwKey)) continue;
+        if (kwData?.items?.stats) {
+          totalPosts += kwData.items.stats.total_posts || 0;
+          totalEng += (kwData.items.stats.total_likes || 0) +
+                      (kwData.items.stats.total_comments || 0) +
+                      (kwData.items.stats.total_shares || 0);
+        }
+        if (kwData?.post_count) totalPosts += kwData.post_count;
+      }
+    }
+  }
+  const filteredKols = (latest.kol_summary || []).filter(k =>
+    kw === 'ALL' || k.keyword === kw
+  );
+  kolCount = filteredKols.length;
+
+  document.getElementById('kpiPosts').textContent = totalPosts.toLocaleString();
+  document.getElementById('kpiEngagement').textContent = totalEng.toLocaleString();
+  document.getElementById('kpiKol').textContent = kolCount;
+  document.getElementById('kpiPlatforms').textContent =
+    Object.keys(latest.platforms || {}).length;
+
+  // ── Trend Chart (filtered) ──
+  if (gt?.status === 'success') {
+    if (kw === 'ALL') {
+      renderTrendChart(gt.data);
+    } else {
+      const filtered = {};
+      if (gt.data[kw]) filtered[kw] = gt.data[kw];
+      renderTrendChart(filtered);
+    }
+  }
+
+  // ── Platform Chart (filtered) ──
+  renderPlatformChart(latest.platforms, matchKw);
+
+  // ── Engagement Chart (filtered) ──
+  renderEngagementChart(latest.platforms, matchKw);
+
+  // ── KOL Table (filtered) ──
+  renderKolTable(filteredKols);
+
+  // ── Posts Table (filtered) ──
+  renderPostsTable(latest.platforms, matchKw);
+
+  // ── Related Keywords (filtered) ──
+  if (gt?.status === 'success') {
+    if (kw === 'ALL') {
+      renderRelatedKeywords(gt.data);
+    } else {
+      const filtered = {};
+      if (gt.data[kw]) filtered[kw] = gt.data[kw];
+      renderRelatedKeywords(filtered);
+    }
+  }
+}
+
+function renderTrendChart(gtData) {
+  const datasets = [];
+  const colors = ['#4a90d9', '#9b59b6', '#2ecc71', '#f39c12', '#e74c3c'];
+  let labels = [];
+  let i = 0;
+
+  for (const [kw, kwData] of Object.entries(gtData)) {
+    if (kwData.trend_data) {
+      const dates = Object.keys(kwData.trend_data).sort();
+      if (dates.length > labels.length) labels = dates;
+      datasets.push({
+        label: kw,
+        data: dates.map(d => kwData.trend_data[d]),
+        borderColor: colors[i % colors.length],
+        backgroundColor: colors[i % colors.length] + '20',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 2,
+        borderWidth: 2,
+      });
+      i++;
+    }
+  }
+
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (chartTrend) chartTrend.destroy();
+  chartTrend = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#8b8fa3', font: { size: 12 } } },
+      },
+      scales: {
+        x: { ticks: { color: '#8b8fa3', maxTicksLimit: 10 }, grid: { color: 'rgba(42,46,61,0.5)' } },
+        y: { ticks: { color: '#8b8fa3' }, grid: { color: 'rgba(42,46,61,0.5)' }, min: 0, max: 100 },
+      },
+    },
+  });
+}
+
+function renderPlatformChart(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
+  const labels = [];
+  const values = [];
+  const colors = [];
+  const colorMap = {
+    google_trends: '#4285f4', youtube: '#ff0000', pantip: '#4a90d9',
+  };
+  const nameMap = {
+    google_trends: 'Google', youtube: 'YouTube', pantip: 'Pantip',
+  };
+
+  for (const [pname, pdata] of Object.entries(platforms || {})) {
+    if (pdata?.status === 'success') {
+      let count = 0;
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
+        count += kwData?.items?.stats?.total_posts || kwData?.post_count || 0;
+      }
+      labels.push(nameMap[pname] || pname);
+      values.push(count);
+      colors.push(colorMap[pname] || '#888');
+    }
+  }
+
+  if (labels.length === 0) return;
+
+  const ctx = document.getElementById('platformChart').getContext('2d');
+  if (chartPlatform) chartPlatform.destroy();
+  chartPlatform = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'right', labels: { color: '#8b8fa3', padding: 12, font: { size: 12 } } },
+      },
+    },
+  });
+}
+
+function renderEngagementChart(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
+  const labels = [];
+  const likes = [], comments = [], shares = [];
+  const nameMap = {
+    youtube: 'YouTube', pantip: 'Pantip',
+  };
+
+  for (const [pname, pdata] of Object.entries(platforms || {})) {
+    if (pdata?.status === 'success' && pname !== 'google_trends') {
+      let l = 0, c = 0, s = 0;
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
+        if (kwData?.items?.stats) {
+          l += kwData.items.stats.total_likes || 0;
+          c += kwData.items.stats.total_comments || 0;
+          s += kwData.items.stats.total_shares || 0;
+        }
+      }
+      labels.push(nameMap[pname] || pname);
+      likes.push(l); comments.push(c); shares.push(s);
+    }
+  }
+
+  if (labels.length === 0) return;
+
+  const ctx = document.getElementById('engagementChart').getContext('2d');
+  if (chartEngagement) chartEngagement.destroy();
+  chartEngagement = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Likes', data: likes, backgroundColor: '#e74c3c' },
+        { label: 'Comments', data: comments, backgroundColor: '#f39c12' },
+        { label: 'Shares', data: shares, backgroundColor: '#2ecc71' },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { labels: { color: '#8b8fa3' } } },
+      scales: {
+        x: { ticks: { color: '#8b8fa3' }, grid: { display: false } },
+        y: { ticks: { color: '#8b8fa3' }, grid: { color: 'rgba(42,46,61,0.5)' } },
+      },
+    },
+  });
+}
+
+function renderKolTable(kols) {
+  const tbody = document.getElementById('kolBody');
+  if (kols.length === 0) return;
+
+  tbody.innerHTML = kols.map(k => `
+    <tr>
+      <td><strong>@${k.username}</strong></td>
+      <td><span class="badge badge-${k.platform === 'YouTube' ? 'youtube' : 'pantip'}">${k.platform}</span></td>
+      <td>${(k.followers || 0).toLocaleString()}</td>
+      <td>${(k.likes || 0).toLocaleString()} ❤️</td>
+    </tr>
+  `).join('');
+}
+
+function renderPostsTable(platforms, matchKw) {
+  if (!matchKw) matchKw = () => true;
+  const tbody = document.getElementById('postsBody');
+  const allPosts = [];
+  const badgeMap = {
+    youtube: 'youtube', pantip: 'pantip',
+  };
+  const nameMap = {
+    youtube: 'YouTube', pantip: 'Pantip',
+  };
+
+  for (const [pname, pdata] of Object.entries(platforms || {})) {
+    if (pdata?.status === 'success' && pname !== 'google_trends') {
+      for (const [kwKey, kwData] of Object.entries(pdata.data || {})) {
+        if (!matchKw(kwKey)) continue;
+        const posts = kwData?.items?.posts || kwData?.posts || [];
+        for (const p of posts) {
+          allPosts.push({ ...p, platform: pname });
+        }
+      }
+    }
+  }
+
+  if (allPosts.length === 0) return;
+
+  // 按互動量排序（高 → 低）
+  allPosts.sort((a, b) => ((b.likes || 0) + (b.comments || 0)) - ((a.likes || 0) + (a.comments || 0)));
+
+  tbody.innerHTML = allPosts.slice(0, 20).map(p => {
+    const content = (p.text || p.title || '').substring(0, 60) + ((p.text || p.title || '').length > 60 ? '...' : '');
+    const url = p.url || p.webVideoUrl || '';
+    const linked = url
+      ? `<a href="${url}" target="_blank" rel="noopener" style="color:var(--accent-blue); text-decoration:none;" title="${(p.text || p.title || '').substring(0, 200)}">${content} ↗</a>`
+      : content;
+    return `<tr>
+      <td><span class="badge badge-${badgeMap[p.platform] || 'google'}">${nameMap[p.platform] || p.platform}</span></td>
+      <td>${p.author || p.title?.substring(0, 20) || '--'}</td>
+      <td>${linked}</td>
+      <td>${((p.likes || 0) + (p.comments || 0)).toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderRelatedKeywords(gtData) {
+  for (const kwData of Object.values(gtData)) {
+    if (kwData.related_rising) {
+      document.getElementById('risingKeywords').innerHTML =
+        kwData.related_rising.map(r =>
+          `<div style="padding:6px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+            <span>${r.query}</span>
+            <span style="color:var(--accent-green); font-weight:600;">${r.value}%</span>
+          </div>`
+        ).join('');
+    }
+    if (kwData.related_top) {
+      document.getElementById('topKeywords').innerHTML =
+        kwData.related_top.map(r =>
+          `<div style="padding:6px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+            <span>${r.query}</span>
+            <span style="color:var(--accent-blue); font-weight:600;">${r.value}</span>
+          </div>`
+        ).join('');
+    }
+    break; // 只顯示第一個關鍵字的
+  }
+}
+
+// ── Demo Data (when no real data exists) ──
+function showDemoData() {
+  document.getElementById('lastUpdated').textContent = '尚未收集資料 - 請先執行 python collector.py';
+
+  // Show demo trend chart
+  const labels = [];
+  const data1 = [], data2 = [];
+  const now = new Date();
+  for (let i = 30; i >= 0; i--) {
+    const d = new Date(now - i * 86400000);
+    labels.push(d.toISOString().slice(0, 10));
+    data1.push(Math.floor(Math.random() * 30 + 10));
+    data2.push(Math.floor(Math.random() * 20 + 5));
+  }
+
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  chartTrend = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Chai Yo Pass (demo)', data: data1, borderColor: '#4a90d966', backgroundColor: '#4a90d910', fill: true, tension: 0.4, pointRadius: 0, borderWidth: 2, borderDash: [5,5] },
+        { label: 'ไชโยพาส (demo)', data: data2, borderColor: '#9b59b666', backgroundColor: '#9b59b610', fill: true, tension: 0.4, pointRadius: 0, borderWidth: 2, borderDash: [5,5] },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#8b8fa3' } },
+        title: { display: true, text: '⬆ 範例數據 - 執行 collector.py 後將顯示真實數據', color: '#f39c12', font: { size: 13 } },
+      },
+      scales: {
+        x: { ticks: { color: '#8b8fa3', maxTicksLimit: 8 }, grid: { color: 'rgba(42,46,61,0.5)' } },
+        y: { ticks: { color: '#8b8fa3' }, grid: { color: 'rgba(42,46,61,0.5)' }, min: 0, max: 100 },
+      },
+    },
+  });
+}
+
+// ── Trigger Data Collection ──
+function setupToken() {
+  const current = localStorage.getItem('gh_pat') || '';
+  const msg = current
+    ? '已設定 Token。要更換嗎？（留空清除）\n\n目前 Token: ' + current.substring(0, 10) + '...'
+    : '請輸入 GitHub Personal Access Token\n（需要 repo 和 actions 權限）\n\n建立方式：GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate\n權限選：Actions (Read & Write)';
+  const token = prompt(msg, current);
+  if (token === null) return;
+  if (token) {
+    localStorage.setItem('gh_pat', token.trim());
+    alert('✅ Token 已儲存！現在可以一鍵觸發收集。');
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  } else {
+    localStorage.removeItem('gh_pat');
+    alert('Token 已清除。');
+    document.getElementById('settingsBtn').style.borderColor = 'var(--border)';
+  }
+}
+
+(function(){
+  var hasToken = localStorage.getItem('gh_pat');
+  if (hasToken) {
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  }
+})()
+
+async function triggerCollect() {
+  const btn = document.getElementById('collectBtn');
+  const REPO = 'Leah-ps/chaiyopass-monitor';
+  const WORKFLOW = 'daily-monitor.yml';
+  let token = localStorage.getItem('gh_pat') || '';
+  if (!token) {
+    const input = prompt('首次使用需設定 GitHub Token 才能一鍵觸發收集。\n\n建立方式：GitHub → Settings → Developer settings →\nPersonal access tokens → Fine-grained tokens\n權限選：Actions (Read & Write)\n\n請貼上 Token：');
+    if (!input) return;
+    token = input.trim();
+    localStorage.setItem('gh_pat', token);
+    document.getElementById('settingsBtn').style.borderColor = 'var(--accent-green)';
+  }
+  btn.classList.add('loading');
+  btn.innerHTML = '<span class="btn-icon">🚀</span> 觸發收集中...';
+  try {
+    const resp = await fetch(
+      'https://api.github.com/repos/' + REPO + '/actions/workflows/' + WORKFLOW + '/dispatches',
+      { method: 'POST', headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }, body: JSON.stringify({ ref: 'main' }) }
+    );
+    if (resp.status === 204) {
+      startPollingForNewData();
+      return;
+    } else {
+      localStorage.removeItem('gh_pat');
+      document.getElementById('settingsBtn').style.borderColor = 'var(--border)';
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+      alert('Token 無效或已過期，請重新設定。');
+    }
+  } catch(e) {
+    btn.classList.remove('loading');
+    btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+    alert('觸發失敗：' + e.message);
+  }
+}
+
+function startPollingForNewData() {
+  const btn = document.getElementById('collectBtn');
+  const oldTs = document.getElementById('lastUpdated').textContent;
+  let attempts = 0;
+  const maxAttempts = 20;
+  btn.innerHTML = '<span class="btn-icon">⏳</span><span class="spinner"></span> 等待資料更新...';
+  btn.classList.add('loading');
+  const poll = setInterval(async function() {
+    attempts++;
+    try {
+      await loadData();
+      const newTs = document.getElementById('lastUpdated').textContent;
+      if (newTs !== oldTs) {
+        clearInterval(poll);
+        btn.classList.remove('loading');
+        btn.classList.add('success');
+        btn.innerHTML = '<span class="btn-icon">✅</span> 資料已更新';
+        setTimeout(function(){
+          btn.classList.remove('success');
+          btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+        }, 5000);
+        return;
+      }
+    } catch(e) {}
+    if (attempts >= maxAttempts) {
+      clearInterval(poll);
+      btn.classList.remove('loading');
+      btn.innerHTML = '<span class="btn-icon">🔄</span><span class="spinner"></span> 立即收集數據';
+    }
+  }, 30000);
+}
+
+// ── Auto Refresh ──
+loadData();
+setInterval(loadData, 300000); // 每 5 分鐘刷新一次
+</script>
+</body>
+</html>
