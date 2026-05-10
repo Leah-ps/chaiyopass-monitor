@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-09T06:03:17.507030+00:00",
-  "date": "2026-05-09",
+  "timestamp": "2026-05-10T06:22:14.018996+00:00",
+  "date": "2026-05-10",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -108,10 +108,11 @@
           "current_score": 37,
           "avg_score": 47.0,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
@@ -207,139 +208,17 @@
           }
         },
         "SAT": {
-          "post_count": 10,
-          "posts": [
-            {
-              "title": "สนามสอบsat",
-              "url": "https://pantip.com/topic/43956676",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat9 May 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44082325",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
-              "url": "https://pantip.com/topic/43879422",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44073778",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44057091",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat4 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44040894",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44065309",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat11 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44049689",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44032127",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44023269",
-              "comments": 0,
-              "views": 0
-            }
-          ],
+          "post_count": 0,
+          "posts": [],
           "search_url": "https://pantip.com/search?q=SAT",
           "items": {
             "stats": {
-              "total_posts": 10,
+              "total_posts": 0,
               "total_likes": 0,
               "total_comments": 0,
               "total_shares": 0
             },
-            "posts": [
-              {
-                "title": "สนามสอบsat",
-                "url": "https://pantip.com/topic/43956676",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat9 May 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44082325",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
-                "url": "https://pantip.com/topic/43879422",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44073778",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44057091",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat4 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44040894",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44065309",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat11 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44049689",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44032127",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44023269",
-                "comments": 0,
-                "views": 0
-              }
-            ]
+            "posts": []
           }
         },
         "Sports Authority of Thailand": {
@@ -443,17 +322,127 @@
           }
         },
         "การกีฬาแห่งประเทศไทย": {
-          "post_count": 0,
-          "posts": [],
+          "post_count": 9,
+          "posts": [
+            {
+              "title": "การกีฬาแห่งประเทศไทยทำสื่อรับสมัครอาสาซีเกมส์ แต่ในสื่อยังพิมพ์ผิดอยู่เลย - . -\"",
+              "url": "https://pantip.com/topic/43733417",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "จาก ป้ายรอรถเมล์การกีฬาแห่งประเทศไทย- เดอะไนน์พระราม 9 นั่งรถเมล์สายไหนได้บ้าง",
+              "url": "https://pantip.com/topic/43894871",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "🏅ซีเกมส์–พาราเกมส์ กับฉากสุดท้ายที่งดงาม : มากกว่าการแข่งขัน คือความภาคภูมิใจร่วมกันของอาเซียน🏆",
+              "url": "https://pantip.com/topic/43957064",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "ลานกีฬาเอนกประสงค์ในร่มการกีฬาแห่งประเทศไทยเดินทางโดย BTS ได้ยังไงบ้างคะ",
+              "url": "https://pantip.com/topic/43247570",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "การจ่ายค่าลงเบียนเรียน หรือค่าเทอม มหาวิทยาลัยการกีฬาแห่งประเทศไทยวิทยาเขตกระบี่",
+              "url": "https://pantip.com/topic/43240610",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "สมาคมกีฬาวอลเลย์บอลแห่งประเทศไทยส่งนักกีฬาทีมชาติไทยเข้ารับการทดสอบสมรรถภาพครั้งแรก เพื่อเตรียมความพร้อมในรายการระดับนา",
+              "url": "https://pantip.com/topic/44010104",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "๒๗ ปีผ่านไปกับมหกรรมกีฬาที่ประเทศไทยเป็นเจ้าภาพ ป้ายดูย้อนบุคมาก",
+              "url": "https://pantip.com/topic/43885391",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "ชัชชุอร โมกศรี ได้รับรางวัลนักกีฬาดีเด่น \"วันกีฬาแห่งชาติ ประจำปี 2526\"",
+              "url": "https://pantip.com/topic/43976015",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "ใครดูแลการจัดงานซีเกม",
+              "url": "https://pantip.com/topic/43901677",
+              "comments": 0,
+              "views": 0
+            }
+          ],
           "search_url": "https://pantip.com/search?q=การกีฬาแห่งประเทศไทย",
           "items": {
             "stats": {
-              "total_posts": 0,
+              "total_posts": 9,
               "total_likes": 0,
               "total_comments": 0,
               "total_shares": 0
             },
-            "posts": []
+            "posts": [
+              {
+                "title": "การกีฬาแห่งประเทศไทยทำสื่อรับสมัครอาสาซีเกมส์ แต่ในสื่อยังพิมพ์ผิดอยู่เลย - . -\"",
+                "url": "https://pantip.com/topic/43733417",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "จาก ป้ายรอรถเมล์การกีฬาแห่งประเทศไทย- เดอะไนน์พระราม 9 นั่งรถเมล์สายไหนได้บ้าง",
+                "url": "https://pantip.com/topic/43894871",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "🏅ซีเกมส์–พาราเกมส์ กับฉากสุดท้ายที่งดงาม : มากกว่าการแข่งขัน คือความภาคภูมิใจร่วมกันของอาเซียน🏆",
+                "url": "https://pantip.com/topic/43957064",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "ลานกีฬาเอนกประสงค์ในร่มการกีฬาแห่งประเทศไทยเดินทางโดย BTS ได้ยังไงบ้างคะ",
+                "url": "https://pantip.com/topic/43247570",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "การจ่ายค่าลงเบียนเรียน หรือค่าเทอม มหาวิทยาลัยการกีฬาแห่งประเทศไทยวิทยาเขตกระบี่",
+                "url": "https://pantip.com/topic/43240610",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "สมาคมกีฬาวอลเลย์บอลแห่งประเทศไทยส่งนักกีฬาทีมชาติไทยเข้ารับการทดสอบสมรรถภาพครั้งแรก เพื่อเตรียมความพร้อมในรายการระดับนา",
+                "url": "https://pantip.com/topic/44010104",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "๒๗ ปีผ่านไปกับมหกรรมกีฬาที่ประเทศไทยเป็นเจ้าภาพ ป้ายดูย้อนบุคมาก",
+                "url": "https://pantip.com/topic/43885391",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "ชัชชุอร โมกศรี ได้รับรางวัลนักกีฬาดีเด่น \"วันกีฬาแห่งชาติ ประจำปี 2526\"",
+                "url": "https://pantip.com/topic/43976015",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "ใครดูแลการจัดงานซีเกม",
+                "url": "https://pantip.com/topic/43901677",
+                "comments": 0,
+                "views": 0
+              }
+            ]
           }
         }
       }
