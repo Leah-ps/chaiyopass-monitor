@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-12T06:24:19.008165+00:00",
-  "date": "2026-05-12",
+  "timestamp": "2026-05-13T06:37:07.464949+00:00",
+  "date": "2026-05-13",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -208,11 +208,17 @@
           }
         },
         "SAT": {
-          "post_count": 10,
+          "post_count": 9,
           "posts": [
             {
               "title": "สนามสอบsat",
               "url": "https://pantip.com/topic/43956676",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "ช่วยแนะนำหนังสือsatmath หน่อยค่ะ #dek70",
+              "url": "https://pantip.com/topic/44087358",
               "comments": 0,
               "views": 0
             },
@@ -253,20 +259,8 @@
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat11 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44049689",
-              "comments": 0,
-              "views": 0
-            },
-            {
               "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
               "url": "https://pantip.com/topic/44032127",
-              "comments": 0,
-              "views": 0
-            },
-            {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44023269",
               "comments": 0,
               "views": 0
             }
@@ -274,7 +268,7 @@
           "search_url": "https://pantip.com/search?q=SAT",
           "items": {
             "stats": {
-              "total_posts": 10,
+              "total_posts": 9,
               "total_likes": 0,
               "total_comments": 0,
               "total_shares": 0
@@ -283,6 +277,12 @@
               {
                 "title": "สนามสอบsat",
                 "url": "https://pantip.com/topic/43956676",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "ช่วยแนะนำหนังสือsatmath หน่อยค่ะ #dek70",
+                "url": "https://pantip.com/topic/44087358",
                 "comments": 0,
                 "views": 0
               },
@@ -323,20 +323,8 @@
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat11 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44049689",
-                "comments": 0,
-                "views": 0
-              },
-              {
                 "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat28 Mar 2026 ⌛️〽️〰🤡 🌀📛",
                 "url": "https://pantip.com/topic/44032127",
-                "comments": 0,
-                "views": 0
-              },
-              {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat21 Mar 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44023269",
                 "comments": 0,
                 "views": 0
               }
