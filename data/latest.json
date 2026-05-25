@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-24T06:49:15.521166+00:00",
-  "date": "2026-05-24",
+  "timestamp": "2026-05-25T08:01:42.137496+00:00",
+  "date": "2026-05-25",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -108,7 +108,8 @@
           "current_score": 38,
           "avg_score": 49.0,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "การกีฬาแห่งประเทศไทย": {
           "trend_data": {
@@ -206,10 +207,11 @@
           "current_score": 18,
           "avg_score": 7.5,
           "max_score": 100,
-          "trend_direction": "rising"
+          "trend_direction": "rising",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
@@ -305,17 +307,127 @@
           }
         },
         "SAT": {
-          "post_count": 0,
-          "posts": [],
+          "post_count": 9,
+          "posts": [
+            {
+              "title": "สนามสอบsat",
+              "url": "https://pantip.com/topic/43956676",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "ช่วยแนะนำหนังสือsatmath หน่อยค่ะ #dek70",
+              "url": "https://pantip.com/topic/44087358",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat9 May 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44082325",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+              "url": "https://pantip.com/topic/43879422",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat23 May 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44099255",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44073778",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44057091",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44065309",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44090845",
+              "comments": 0,
+              "views": 0
+            }
+          ],
           "search_url": "https://pantip.com/search?q=SAT",
           "items": {
             "stats": {
-              "total_posts": 0,
+              "total_posts": 9,
               "total_likes": 0,
               "total_comments": 0,
               "total_shares": 0
             },
-            "posts": []
+            "posts": [
+              {
+                "title": "สนามสอบsat",
+                "url": "https://pantip.com/topic/43956676",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "ช่วยแนะนำหนังสือsatmath หน่อยค่ะ #dek70",
+                "url": "https://pantip.com/topic/44087358",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat9 May 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44082325",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                "url": "https://pantip.com/topic/43879422",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat23 May 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44099255",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44073778",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44057091",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44065309",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44090845",
+                "comments": 0,
+                "views": 0
+              }
+            ]
           }
         },
         "Sports Authority of Thailand": {
