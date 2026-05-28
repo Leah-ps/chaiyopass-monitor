@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-27T07:46:19.763181+00:00",
-  "date": "2026-05-27",
+  "timestamp": "2026-05-28T07:05:48.265497+00:00",
+  "date": "2026-05-28",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -108,7 +108,8 @@
           "current_score": 0,
           "avg_score": 1.1,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "SAT": {
           "trend_data": {
@@ -206,7 +207,8 @@
           "current_score": 41,
           "avg_score": 47.5,
           "max_score": 100,
-          "trend_direction": "declining"
+          "trend_direction": "declining",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "Sports Authority of Thailand": {
           "trend_data": {
@@ -304,7 +306,8 @@
           "current_score": 0,
           "avg_score": 1.1,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "การกีฬาแห่งประเทศไทย": {
           "trend_data": {
@@ -402,10 +405,11 @@
           "current_score": 35,
           "avg_score": 6.8,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
@@ -546,14 +550,14 @@
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44090845",
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44065309",
               "comments": 0,
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44065309",
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44090845",
               "comments": 0,
               "views": 0
             }
@@ -610,14 +614,14 @@
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44090845",
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44065309",
                 "comments": 0,
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat25 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44065309",
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44090845",
                 "comments": 0,
                 "views": 0
               }
