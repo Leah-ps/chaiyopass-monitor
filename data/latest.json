@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-02T08:11:18.609757+00:00",
-  "date": "2026-06-02",
+  "timestamp": "2026-06-03T08:32:15.970260+00:00",
+  "date": "2026-06-03",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -111,7 +111,8 @@
           "current_score": 42,
           "avg_score": 47.5,
           "max_score": 100,
-          "trend_direction": "declining"
+          "trend_direction": "declining",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "Sports Authority of Thailand": {
           "trend_data": {
@@ -212,7 +213,8 @@
           "current_score": 0,
           "avg_score": 2.8,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "การกีฬาแห่งประเทศไทย": {
           "trend_data": {
@@ -313,10 +315,11 @@
           "current_score": 50,
           "avg_score": 6.6,
           "max_score": 100,
-          "trend_direction": "rising"
+          "trend_direction": "rising",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
