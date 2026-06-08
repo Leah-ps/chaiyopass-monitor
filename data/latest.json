@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-07T07:39:54.594827+00:00",
-  "date": "2026-06-07",
+  "timestamp": "2026-06-08T08:26:33.878141+00:00",
+  "date": "2026-06-08",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -111,7 +111,8 @@
           "current_score": 0,
           "avg_score": 1.1,
           "max_score": 100,
-          "trend_direction": "stable"
+          "trend_direction": "stable",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         },
         "การกีฬาแห่งประเทศไทย": {
           "trend_data": {
@@ -212,10 +213,11 @@
           "current_score": 21,
           "avg_score": 6.9,
           "max_score": 100,
-          "trend_direction": "rising"
+          "trend_direction": "rising",
+          "note": "沿用上次數據（Google 暫時封鎖）"
         }
       },
-      "note": "via direct HTTP"
+      "note": "reused previous data"
     },
     "pantip": {
       "status": "success",
@@ -320,6 +322,12 @@
               "views": 0
             },
             {
+              "title": "เรียนsatverbalที่ไหนดีคะ",
+              "url": "https://pantip.com/topic/44119371",
+              "comments": 0,
+              "views": 0
+            },
+            {
               "title": "ช่วยแนะนำหนังสือsatmath หน่อยค่ะ #dek70",
               "url": "https://pantip.com/topic/44087358",
               "comments": 0,
@@ -344,26 +352,20 @@
               "views": 0
             },
             {
-              "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
-              "url": "https://pantip.com/topic/43879422",
-              "comments": 0,
-              "views": 0
-            },
-            {
               "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
               "url": "https://pantip.com/topic/44073778",
               "comments": 0,
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44057091",
+              "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+              "url": "https://pantip.com/topic/43879422",
               "comments": 0,
               "views": 0
             },
             {
-              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
-              "url": "https://pantip.com/topic/44090845",
+              "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+              "url": "https://pantip.com/topic/44057091",
               "comments": 0,
               "views": 0
             }
@@ -380,6 +382,12 @@
               {
                 "title": "สนามสอบsat",
                 "url": "https://pantip.com/topic/43956676",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "เรียนsatverbalที่ไหนดีคะ",
+                "url": "https://pantip.com/topic/44119371",
                 "comments": 0,
                 "views": 0
               },
@@ -408,26 +416,20 @@
                 "views": 0
               },
               {
-                "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
-                "url": "https://pantip.com/topic/43879422",
-                "comments": 0,
-                "views": 0
-              },
-              {
                 "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat2 May 2026 ⌛️〽️〰🤡 🌀📛",
                 "url": "https://pantip.com/topic/44073778",
                 "comments": 0,
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44057091",
+                "title": "สอบSATครั้งแรกต้องเตรียมตัวยังไงบ้าง",
+                "url": "https://pantip.com/topic/43879422",
                 "comments": 0,
                 "views": 0
               },
               {
-                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat16 May 2026 ⌛️〽️〰🤡 🌀📛",
-                "url": "https://pantip.com/topic/44090845",
+                "title": "📛🌀🤡〰🎢⏳ บ้าบอคอหุ้น® 🚁🎹Sat18 Apr 2026 ⌛️〽️〰🤡 🌀📛",
+                "url": "https://pantip.com/topic/44057091",
                 "comments": 0,
                 "views": 0
               }
