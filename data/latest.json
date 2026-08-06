@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-08-05T06:04:53.616423+00:00",
-  "date": "2026-08-05",
+  "timestamp": "2026-08-06T06:08:28.936954+00:00",
+  "date": "2026-08-06",
   "keywords": [
     "Chai Yo Pass",
     "ไชโยพาส",
@@ -449,17 +449,103 @@
           }
         },
         "Sports Authority of Thailand": {
-          "post_count": 0,
-          "posts": [],
+          "post_count": 7,
+          "posts": [
+            {
+              "title": "กระหึ่มโลกMotogpThaiGPที่สนามช้างบุรีรัมย์ถูกวางให้เป็นสนามเปิดฤดูกาล2025และ2026",
+              "url": "https://pantip.com/topic/42920736",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "JJNY:อ.รัฐศาสตร์สำรวจเผยน.ศ.เห็นด้วย|ลางร้าย!แขนขาดข้างหนึ่งแล้ว|พิธาลั่นก้าวไกลได้ตั้งรบ.|รศ.ดร.สิริพรรณจี้\"กกท.\"",
+              "url": "https://pantip.com/topic/41751712",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "(MV)TogetherAbsolutelyคั่นกู2022ค่ะตัวเต็มมาละค่ะ(มีน้องไบร์ทนิดหน่อยเองนะคะมาแบบquoteๆ)เชิญร่วมบริจาคได้นะคะ",
+              "url": "https://pantip.com/topic/41266123",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "วอลเลย์บอลหญิงอาเซียนกรังด์ปรีซ์2019",
+              "url": "https://pantip.com/topic/39222638",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "SummitDiary",
+              "url": "https://pantip.com/topic/38231482",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "เซ็นสัญญาThailandGPเป็นที่เรียบรอย3ปี2018-2020",
+              "url": "https://pantip.com/topic/36827412",
+              "comments": 0,
+              "views": 0
+            },
+            {
+              "title": "บิ๊กเสือกร้าวต้องไม่มีMMAบนผืนแผ่นดินแห่งต้นกำเนิดมวยไทย",
+              "url": "https://pantip.com/topic/34874598",
+              "comments": 0,
+              "views": 0
+            }
+          ],
           "search_url": "https://pantip.com/search?q=Sports Authority of Thailand",
           "items": {
             "stats": {
-              "total_posts": 0,
+              "total_posts": 7,
               "total_likes": 0,
               "total_comments": 0,
               "total_shares": 0
             },
-            "posts": []
+            "posts": [
+              {
+                "title": "กระหึ่มโลกMotogpThaiGPที่สนามช้างบุรีรัมย์ถูกวางให้เป็นสนามเปิดฤดูกาล2025และ2026",
+                "url": "https://pantip.com/topic/42920736",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "JJNY:อ.รัฐศาสตร์สำรวจเผยน.ศ.เห็นด้วย|ลางร้าย!แขนขาดข้างหนึ่งแล้ว|พิธาลั่นก้าวไกลได้ตั้งรบ.|รศ.ดร.สิริพรรณจี้\"กกท.\"",
+                "url": "https://pantip.com/topic/41751712",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "(MV)TogetherAbsolutelyคั่นกู2022ค่ะตัวเต็มมาละค่ะ(มีน้องไบร์ทนิดหน่อยเองนะคะมาแบบquoteๆ)เชิญร่วมบริจาคได้นะคะ",
+                "url": "https://pantip.com/topic/41266123",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "วอลเลย์บอลหญิงอาเซียนกรังด์ปรีซ์2019",
+                "url": "https://pantip.com/topic/39222638",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "SummitDiary",
+                "url": "https://pantip.com/topic/38231482",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "เซ็นสัญญาThailandGPเป็นที่เรียบรอย3ปี2018-2020",
+                "url": "https://pantip.com/topic/36827412",
+                "comments": 0,
+                "views": 0
+              },
+              {
+                "title": "บิ๊กเสือกร้าวต้องไม่มีMMAบนผืนแผ่นดินแห่งต้นกำเนิดมวยไทย",
+                "url": "https://pantip.com/topic/34874598",
+                "comments": 0,
+                "views": 0
+              }
+            ]
           }
         },
         "การกีฬาแห่งประเทศไทย": {
